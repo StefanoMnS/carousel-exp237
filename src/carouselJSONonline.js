@@ -1,3 +1,10 @@
+/**
+ *  @closCarousel fn
+ *  Adds Carousel with data object - single file
+ *  Iframe needs to be removed in AT for image to show
+ * 
+ */
+
 const closCarousel = (function () {
   const getHandle = function () {
     if (document.querySelector('.main-container2') !== null) {
@@ -553,7 +560,6 @@ const closCarousel = (function () {
            </div>`
 
       cat.parentElement.insertBefore(carsl, cat)
-      console.log('\n\n cat is \n\n', cat)
     }
   }
 })()
