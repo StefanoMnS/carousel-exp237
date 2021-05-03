@@ -10,10 +10,10 @@ Made out of  2 or possibly 3 depending on what works out to be more of a user fr
 One experiment to be a container for cards.    
 The other experiment to pass the cards.    
 Offers are out.         
-Separation of UI/ data as much as possible     - a third party in charge of passing data. 
+Separation of UI/ data - third party passing data. 
 
 ATM it passes data to Carousel injected from console via a self exec function/ slides object.
-
+Another does it all together
 
 ----
 
