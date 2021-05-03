@@ -38,6 +38,11 @@ ATM it passes data to Carousel injected from console via a self exec function/ s
 
 <br /><br />
 
+<kbd>Screenshot 1</kbd>
+![Carousel](./src/images/s1.png)
+
+<br />
+
 <kbd>Old design</kbd>
 ![Carousel](./src/images/sc.png)
 
@@ -45,10 +50,15 @@ ATM it passes data to Carousel injected from console via a self exec function/ s
 
 > user no card,  x to close to qa
 
+```
+   mboxCreate("cardsOffers", "profile.keyword=Carousel Offers")
+
+   HTML Offer code: Get your ${profile.keyword} here!
+
+   User sees: =>  Get your Carousel Offers here
 
 
-
-
+```
 
 
 
