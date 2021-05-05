@@ -19,7 +19,9 @@
   }       
 }
 //externalScripts()
-const closCarousel237 = (function () {
+
+
+var closCarousel237 = (function () {
   let index = 0;
   // const dotRatio = 0
   const getHandle = function () {
@@ -104,7 +106,14 @@ const closCarousel237 = (function () {
     position: relative;
   }
 
-
+ .item span.close-card {
+    cursor: pointer;
+    display: flex;
+    width: 30px;
+    padding: 0px 10px;
+    height: 25px;
+    margin-bottom: 30px;
+ }
  
 
 
@@ -169,6 +178,15 @@ const closCarousel237 = (function () {
     font-size: 14px;
     right: 33px;
   }
+
+  #main-wrapper--exp237 .item p.heading span {
+    position: absolute;
+    letter-spacing: 0;
+    line-height: 21px;
+    font-size: 14px;
+    right: 33px;
+  }
+
 
 
   
@@ -570,6 +588,12 @@ const closCarousel237 = (function () {
       // makes sure not there already
       this.removeXhandle(".main-wrapper-exp237");
       this.removeSiteStripe();
+      // already exist
+      if (document.querySelector('.main-wrapper--exp237')) {
+        let ele = document.querySelector('.main-wrapper--exp237');
+        ele.parentElement.removeChild(ele);
+      }
+      // then add.
       cat.parentElement.insertBefore(carsl, cat);
     },
 
@@ -607,9 +631,7 @@ window.addEventListener("resize", () => {
  
   new ResizeObserver(cardsBeenAdded).observe(xcards)
 
- 
-   
-  
+
   //first slide
   const fi = document.querySelector('#main-wrapper--exp237 .item');
   fi.scrollIntoView();
@@ -617,15 +639,19 @@ window.addEventListener("resize", () => {
   isCrsl.scrollTop;
   return carslides.scrollTop;
   
-  
-  
-  
 });
+
+
+
+
+
+
+  
 
 
 window.addEventListener("load", function () {
   closCarousel237.init();
-
+  let times = 0;
   const allSparks = function () {
     const data = {};
     if ("sparksSSO" in window.sessionStorage) {
@@ -677,7 +703,30 @@ window.addEventListener("load", function () {
           : "signed-out",
     },
   };
+
+
+
+    //card-close event
+    window.addEventListener('click', function(e) {
+      if (document.querySelector('#main-wrapper--exp237 #content') && 
+      (e.target.classList.contains('close-card'))) {
+          e.preventDefault();
+          times++;
+          let el = e.toElement.parentElement;
+          if (times === 1 ) {
+            el.parentElement.removeChild(el)
+            times = 0;
+          } 
+      }
+    });
   
+
+
+ 
+  
+
+
+
   
    // carousel cards updated
   let xcards = document.querySelector('#main-wrapper--exp237 #content')
@@ -699,8 +748,8 @@ window.addEventListener("load", function () {
 
     const checkOptions = () => {
         return options &&
-          options.name && //test changed to -1 ------> change to not
-          document.cookie.indexOf("MS_USER_COOKIE_10151") === -1
+          options.name && //test changed to not
+          document.cookie.indexOf("MS_USER_COOKIE_10151") !== -1
           ? doGreed(options)
           : false;
       },

@@ -24,6 +24,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'difference',
           type: 'viewBag',
+          close: 'close-card',
+          closeEle: 'X',
           footer: 'It\"s time to join the POTTY.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -35,6 +37,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'luminosity',
           type: 'viewOrder',
+          close: 'close-card',
+          closeEle: 'X',
           footer: '20% Off your next purchase.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -47,6 +51,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'difference',
           type: 'viewBag',
+          close: 'close-card',
+          closeEle: 'X',
           footer: 'It\"s time to join the POTTY.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -58,6 +64,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'luminosity',
           type: 'viewOrder',
+          close: 'close-card',
+          closeEle: 'X',
           footer: '20% Off your next purchase.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -70,6 +78,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'difference',
           type: 'viewBag',
+          close: 'close-card',
+          closeEle: 'X',
           footer: 'It\"s time to join the POTTY.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -81,6 +91,8 @@ var carouselData = (function () {
           className: 'hidden',
           inline: 'luminosity',
           type: 'viewOrder',
+          close: 'close-card',
+          closeEle: 'X',
           footer: '20% Off your next purchase.',
           image:
             'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
@@ -104,10 +116,9 @@ var carouselData = (function () {
             parseInt(cards[c].height) +
             '" src="' +
             cards[c].image +
-            '"/>'
-         
+            '"/>';
           cardsContent += `<p class="heading">${cards[c].footer}</p></section>`
-          cardsContent += '</div>'
+          cardsContent += `<span class="${cards[c].close}">${cards[c].closeEle}</span></div>`
         }
         crds.innerHTML = cardsContent
         return crds

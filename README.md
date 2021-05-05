@@ -47,6 +47,13 @@ Another does it all together
 ![Carousel](./src/images/sc.png)
 
 
+#### live link
+
+https://donpio.tech/repositories/mtest/index.html
+
+
+
+
 
 > user no card,  x to close to qa
 
@@ -62,38 +69,5 @@ Another does it all together
 
 
 
-<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-
-
-function chckbox() {
-  var checkBox = document.getElementById("myCheck");
-  var text = document.getElementById("text");
-  if (checkBox.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-}
-
-
-
-
-
-
-```
-  using a preview link, I can launch a form with a text button,
-  to inject this data directly
-
-
-```
+// x button closes card
+if container already exists
