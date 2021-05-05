@@ -68,7 +68,7 @@ const closCarousel237 = (function () {
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
   }
  
   @keyframes fader {
@@ -104,6 +104,7 @@ const closCarousel237 = (function () {
     position: relative;
   }
   #main-wrapper--exp237 .account--holder__greet {
+	height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -156,17 +157,28 @@ const closCarousel237 = (function () {
     right: 33px;
   }
 
-  #main-wrapper--exp237 .carousel--dot span {
-    display: none;
+
+  
+  
+@media only screen and (max-width: 1024px) {
+
+	#main-wrapper--exp237 .carousel--dot span {
+    	display: none;
+	}
+
+
+	button#prev, button#next {
+    	display: none;
+	}
+ 
+	button#prev.hidden, button#next.hidden {
+		display: none;
+	}
+
+
 }
   
-button#prev, button#next {
-    display: none;
- }
- 
-button#prev.hidden, button#next.hidden {
-	display: none;
-}
+
  
  .welcome--message {
          width: 100%;
@@ -216,14 +228,17 @@ button#prev.hidden, button#next.hidden {
   }
   
   #carousel--container {
-      margin-top: 60px;
-      margin-bottom: 33px;
-      overflow: auto;
+	  height: 70px;
+      margin: 0;
       scroll-behavior: smooth;
       scrollbar-width: none;
       margin: 0;
       -ms-overflow-style: none;  /* IE and Edge */
      scrollbar-width: none;  /* Firefox */
+  }
+  
+   #main-wrapper--exp237 #carousel--wrapper .carousel__dots {
+    display: none !important;
   }
 
 
@@ -259,6 +274,7 @@ button#prev.hidden, button#next.hidden {
       bottom: 1px;
       margin: 5px 0;
       position: absolute;
+      display: none;
     }
 
     #main-wrapper--exp237 button svg {
@@ -304,7 +320,7 @@ button#prev.hidden, button#next.hidden {
 
     #main-wrapper--exp237 #prev,
     #main-wrapper--exp237 #next {
-      display: flex;
+      
       justify-content: center;
       align-content: center;
       background: white;
@@ -321,7 +337,7 @@ button#prev.hidden, button#next.hidden {
       left: 0;
       left: -75px;
       transform: translate(50%, -50%) rotate(180deg);
-      display: none;
+     
     }
     #main-wrapper--exp237 #next {
       top: 57%;
@@ -365,8 +381,13 @@ button#prev.hidden, button#next.hidden {
     },
     
     doDots: function (d) {
+    	console.log(index)
     	
-     index += d;
+    index+=d;
+     
+     
+     	
+     	
       const slides = document.querySelectorAll(
         "#main-wrapper--exp237 #content .item"
       );
@@ -383,13 +404,21 @@ button#prev.hidden, button#next.hidden {
         }
   
         if (i === index) {
+         
           dot.classList.add("dot--active");
         }
       });
      
-
+	
+	 	console.log(index)
 
     },
+    
+    showHideArrows: (ele,val) =>  {
+      const arrow = document.getElementById(ele);
+      arrow.hidden = val;
+    },
+    
 
     removeXhandle: function (hndl) {
       let rmService;
@@ -420,27 +449,31 @@ button#prev.hidden, button#next.hidden {
       const next = document.getElementById("next");
       const prev = document.getElementById("prev");
       
-      window.screen.size > 1024 ? next.style.display = "block" : next.style.display = "none";
+      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('next', true)
 
       next.addEventListener("click", (e) => {
         carousel.scrollBy(+(width + gap), 0);
         carousel.scrollTop;
-        closCarousel237.doDots(+1);
         
-        if (carousel.scrollLeft !== 0) {
-          //closCarousel237.doDots(+1);
+        
+        if (carousel.scrollLeft === 0) {
+           closCarousel237.doDots(+0);
         }
         
-        if (window.innerWidth > 1024) {
+         if (carousel.scrollLeft !== 0) {
+           closCarousel237.doDots(+1);
+        }
+        
+        if (window.innerWidth > 1024 ) {
         	prev.classList.remove('hidden');
-        	prev.style.display = "flex";
+        	this.showHideArrows('prev', false);
         }
         
         
 
         if (carousel.scrollWidth - width - gap <= carousel.scrollLeft + width + gap) {
-          next.style.display = "none";
-          closCarousel237.doDots(0);
+        	this.showHideArrows('next',true)
+            closCarousel237.doDots(0);
         }
         return carousel.scrollTop;
       });
@@ -450,11 +483,11 @@ button#prev.hidden, button#next.hidden {
       
 
         if (carousel.scrollLeft - width - gap <= 0) {
-          prev.style.display = "none";
-          closCarousel237.doDots(-1);
+        	this.showHideArrows('prev',true);
+            closCarousel237.doDots(-1);
         }
         if (content.scrollWidth - width - gap <= carousel.scrollLeft) {
-        		next.style.display = "flex";
+        		this.showHideArrows('next', false);
         		closCarousel237.doDots(-1);
         }
         
@@ -462,11 +495,13 @@ button#prev.hidden, button#next.hidden {
       });
       
       if (window.innerWidth > 1024) {
-        	next.style.display = "flex";
+        	this.showHideArrows('next', true);
       }
 
       let width = carousel.offsetWidth;
       window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
+      
+      window.screen.size > 1024 ? this.showHideArrows('prev',false) : this.showHideArrows('prev', true)
       
     },
 
@@ -486,58 +521,7 @@ button#prev.hidden, button#next.hidden {
            <div id="content">
            
     
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              
-               <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-      
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              
-               <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-              <div class="item">
-                 <img src="https://donpio.tech/repositories/mtest/images/Card_NEW.png" />
-                 <p class="heading">New Sparks offers waiting for you</p>
-              </div>
-        
+             
            
            
            
@@ -572,6 +556,7 @@ button#prev.hidden, button#next.hidden {
   `;
       // makes sure not there already
       this.removeXhandle(".main-wrapper-exp237");
+      this.removeSiteStripe();
       cat.parentElement.insertBefore(carsl, cat);
     },
 
@@ -589,16 +574,42 @@ window.addEventListener("resize", () => {
 		prev = document.querySelector("button#prev"),
 		next = document.querySelector("button#next"),
 		carslides = document.querySelectorAll("#main-wrapper--exp237 #content .item");
-  // set both arrow to none
-  [prev,next].forEach(itm => itm.style.display = "none");
-  // update next arrow within fn
-  closCarousel237.doCarouselSecondAct();
+    // set both arrow to none
+    [prev,next].forEach(itm => itm.style.display = "none");
+    // update next arrow within fn
+    closCarousel237.doCarouselSecondAct();
+    index = 0;
+    debugger;
+   // carousel cards updated
+  let xcards = document.querySelector('#main-wrapper--exp237 #content')
+  let cardsNum = 0
+  function cardsBeenAdded () {
+    let cardsWidth = xcards.offsetWidth;
+    cardsNum = Math.round(cardsWidth/ 260);
+    console.log('cards before: ',cardsNum, cardsWidth);
+  }
   
+  console.log('cards after: ',cardsNum); 
+
+ 
+  new ResizeObserver(cardsBeenAdded).observe(xcards)
+
+ 
+   
   
-  
+  //first slide
+  const fi = document.querySelector('#main-wrapper--exp237 .item');
+  fi.scrollIntoView();
+  //top
   isCrsl.scrollTop;
   return carslides.scrollTop;
+  
+  
+  
+  
 });
+
+
 window.addEventListener("load", function () {
   closCarousel237.init();
 
@@ -644,22 +655,38 @@ window.addEventListener("load", function () {
     name: "sparksOptions",
     allOffers: allSparks(),
     visitorName:
-      getCookie("MS_USER_COOKIE_10151") || "Not available",
+      getCookie("MS_USER_COOKIE_10151") || "",
     // visitorStatus
     other: {
       visitorStatus:
-        !!this.visitorName && this.visitorName !== "Not available"
+        !!this.visitorName && this.visitorName !== ""
           ? "signed-in"
           : "signed-out",
     },
   };
+  
+  
+   // carousel cards updated
+  let xcards = document.querySelector('#main-wrapper--exp237 #content')
+  let cardsNum = 0
+  function cardsBeenAdded () {
+    let cardsWidth = xcards.offsetWidth;
+    cardsNum = Math.round(cardsWidth/ 260);
+    //arrows
+    prev = document.querySelector("button#prev"),
+	next = document.querySelector("button#next"),
+    console.log('cards before: ',cardsNum, cardsWidth);
+    cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
+  }
+
+  new ResizeObserver(cardsBeenAdded).observe(xcards)
 
   try {
     let options = sparksOptions;
 
     const checkOptions = () => {
         return options &&
-          options.name && //test changed to -1
+          options.name && //test changed to -1 ------> change to not
           document.cookie.indexOf("MS_USER_COOKIE_10151") === -1
           ? doGreed(options)
           : false;

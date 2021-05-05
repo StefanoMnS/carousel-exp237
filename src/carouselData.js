@@ -1,9 +1,24 @@
+
+
 var carouselData = (function () {
     return {
       init: function () {
         this.doCards()
       },
-  
+
+      animation: function() {
+        let done = false;
+        return new Promise(resolve => {
+          function grabElems() {
+            if(document.querySelector('#content') && window.gsap) {
+              done = true;
+              resolve(done)
+            }
+          }
+        grabElems();
+        })
+      },
+
       sparkCards: [
         {
           className: 'last-year',
@@ -28,6 +43,8 @@ var carouselData = (function () {
          
         }
       ],
+
+      addIds: (spks) => spks.map((itm,idx) => itm.id = idx),
   
       compileCards: function (cards) {
         const crds = document.createElement('div')
@@ -51,21 +68,44 @@ var carouselData = (function () {
       },
   
       doCards: function () {
+        this.addIds(this.sparkCards);
         let spcrds = this.sparkCards
         new Promise(resolve => {
           resolve(this.compileCards(spcrds))
         }).then(data => {
-          let compcards = data
-  
+          let compcards = data;
           if (document.getElementById('content')) {
             document
               .querySelector('#content')
               .insertAdjacentHTML('beforeend', compcards.innerHTML)
           }
         })
+
+        let grabAni = this.animation();
+        grabAni.then((ddon) => {
+          debugger;
+          if(ddon) {
+            console.log(ddon)
+            let crs = document.querySelectorAll('.item');
+            window.gsap.to(crs, {
+              duration:2,
+              opacity: 1,
+              stagger: 0.2,
+              y: - 1000
+            })
+
+          }
+        })
+
+      
+
       }
     }
   })()
   
   carouselData.init() 
+
+  
+
+
   
