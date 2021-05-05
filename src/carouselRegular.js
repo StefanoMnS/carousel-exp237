@@ -103,6 +103,13 @@ const closCarousel237 = (function () {
     box-sizing: border-box;
     position: relative;
   }
+
+
+ 
+
+
+
+
   #main-wrapper--exp237 .account--holder__greet {
 	height: 40px;
     display: flex;
@@ -129,6 +136,12 @@ const closCarousel237 = (function () {
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
+  }
+
+
+  #main-wrapper--exp237 .item.hidden {
+    display: none;
+
   }
   #main-wrapper--exp237 .item img {
     width: 85px;
@@ -228,7 +241,7 @@ const closCarousel237 = (function () {
   }
   
   #carousel--container {
-	  height: 70px;
+	  height: 77px;
       margin: 0;
       scroll-behavior: smooth;
       scrollbar-width: none;
