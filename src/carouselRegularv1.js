@@ -13,6 +13,8 @@ function externalScripts() {
 externalScripts()
 
 
+
+
 var closCarousel237 = (function () {
   let index = 0;
   // const dotRatio = 0
@@ -129,33 +131,28 @@ var closCarousel237 = (function () {
     width: 100%;
     padding: 0;
     position: relative;
-    aspect-ratio: 16/9;
-    max-width: 133px;
+    max-width: 112px;
     transform: rotate(360deg);
 }
 #main-wrapper--exp237 .item .heading {
-    font-family: 'MS London eText Semibold';
-    font-weight: normal;
-    font-size: 14px;
-    height: 40px;
-    color: #000000;
     letter-spacing: 0;
-    line-height: 20px;
-    width: 180px;
-    margin: 0;
-    margin-left: -16px;
-    padding-right: 42px;
+    color: #000000;
+    font-family: 'MS London eText Semibold';
+    text-align: left;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    line-height: 20px;
+    margin: 0;
+    width: 160px;
+    font-size: 14px;
+    margin-left: -70px;
+    
 }
 #main-wrapper--exp237 img.card-confetti {
     width: 20px;
     height: 20px;
-    aspect-ratio: 16/9;
-    transform: translateY(20px);
+    transform: translate(-40px, 20px);
     object-fit: contain;
-    align-self: flex-start;
+    align-self: auto;
 }
 .item .heading img.card-confetti::before {
     width: 20px;
@@ -232,25 +229,22 @@ var closCarousel237 = (function () {
     position: relative;
     top: -30px;
     left: -24px;
-    background: white;
+    background: rgba(255,255,255,.35);
 }
 #main-wrapper--exp237 .card-notification {
-    height: 24px;
-    width: 24px;
-    border: 1px solid #fff;
+    height: 22px;
+    width: 22px;
+    border: 1px solid rgb(255 255 255);
     border-radius: 50%;
     position: absolute;
-    background-color: #000;
-    color: #fff;
-    line-height: 22px;
+    background-color: #333;
+    color: rgb(255 255 255);
+    line-height: 20px;
     text-align: center;
-    font-size: 14px;
-    vertical-align: middle;
-    font-weight: 400;
-    top: -2px;
-    right: 9px;
-    font-variant: normal;
-    border-color: #eee;
+    font-size: 12px;
+    top: 0px;
+    right: 29px;
+   
 }
 @media only screen and (min-width: 1025px) {
     #main-wrapper--exp237 #carousel--wrapper {
@@ -268,25 +262,30 @@ var closCarousel237 = (function () {
         outline: none;
         box-shadow: none;
    }
-    #main-wrapper--exp237 #carousel--wrapper .carousel__dots {
-        display: none;
-   }
+   
     #main-wrapper--exp237 button svg {
         width: 35px;
         height: 40px;
-        fill: #19322F;
+        fill: rgba(255,255,255,.35);
+        width: 35px;
+	    fill: rgba(255,255,255,.35);
+	    stroke-width: 2px;
+	    backdrop-filter: opacity(0.5);
    }
     #main-wrapper--exp237 #prev, #main-wrapper--exp237 #next {
         justify-content: center;
         align-content: center;
-        background: white;
+        width: 35px;
+	    height: 40px;
+	    fill: rgba(255,255,255,.35);
+	    stroke-width: 2px;
+	    backdrop-filter: opacity(0.5);
         border: none;
         padding: 1px;
         border-radius: 0;
         outline: 0;
         cursor: pointer;
         position: absolute;
-        background-color: inherit;
         line-height: 0.5;
    }
     #main-wrapper--exp237 #prev {
@@ -299,6 +298,7 @@ var closCarousel237 = (function () {
         top: 60%;
         right: 16%;
         transform: translate(-50%, -50%);
+        background-color: initial; 
    }
     #main-wrapper--exp237 .account--holder__greet {
         display: flex;
@@ -307,8 +307,12 @@ var closCarousel237 = (function () {
    }
     #main-wrapper--exp237 .account--holder__greet p {
         margin: 0;
-        padding: 0 5px;
-        font-weight: normal;
+	    padding: 0 5px;
+	    font-weight: 600;
+	    letter-spacing: 0;
+	    width: 213px;
+	    font-size: 18px;
+	    font-family: 'MS London eText';
    }
 }
 
@@ -390,7 +394,7 @@ var closCarousel237 = (function () {
       const next = document.getElementById("next");
       const prev = document.getElementById("prev");
       
-      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('next', true)
+      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('prev', true)
 
       next.addEventListener("click", (e) => {
         carousel.scrollBy(+(width + gap), 0);
@@ -518,21 +522,27 @@ var closCarousel237 = (function () {
 
 window.addEventListener("resize", () => { // screen resize
   // update arrows, carousel scroll top and cards into view
-  const isCrsl = document.querySelectorAll("#main-wrapper--exp237 #carousel--container"), 
-		prev = document.querySelector("button#prev"),
-		next = document.querySelector("button#next"),
-		carslides = document.querySelectorAll("#main-wrapper--exp237 #content .item");
+  const isCrsl = document.querySelectorAll("#main-wrapper--exp237 #carousel--container");
+	const prev = document.querySelector("button#prev");
+	const next = document.querySelector("button#next");
+	const carslides = document.querySelectorAll("#main-wrapper--exp237 #content .item");
     // set both arrow to none
     [prev,next].forEach(itm => itm.style.display = "none");
     // update next arrow within fn
     closCarousel237.doCarouselSecondAct();
     index = 0;
-  //bring first slide into view
-  const fi = document.querySelector('#main-wrapper--exp237 .item');
-  fi.scrollIntoView();
-  //top
-  isCrsl.scrollTop;
-  return carslides.scrollTop;
+    let fi;
+    
+    //bring first slide into view
+    if (document.querySelector('#main-wrapper--exp237 .item') !== null) {
+	   fi = document.querySelector('#main-wrapper--exp237 .item');
+	   fi.scrollIntoView();
+    }
+    
+	//top
+	isCrsl.scrollTop;
+	carslides.scrollTop;
+
     
   
 }); // resize event
@@ -549,7 +559,9 @@ window.addEventListener("load", function () { // load page event
   // init activity
   closCarousel237.init();
   let times = 0;
-
+  let allOffers;  //user sparks total
+ 
+  
   const allSparks = function () {
     const data = {};
     if ("sparksSSO" in window.sessionStorage) {
@@ -557,7 +569,10 @@ window.addEventListener("load", function () { // load page event
       data.addedOffers = session.totalAddedOffers;
       data.allOffers = session.totalOffers;
       data.newOffers = data.allOffers - data.addedOffers;
+      
       data.allCards = session.allOffers[0].offers;
+      // spaks offers user
+      allOfers = data.allOffers
       return data;
     }
   };
@@ -588,6 +603,7 @@ window.addEventListener("load", function () { // load page event
     insertGreeding.textContent = visitNGreet;
   }
 
+
   const sparksOptions = {
     name: "sparksOptions",
     allOffers: allSparks(),
@@ -601,6 +617,8 @@ window.addEventListener("load", function () { // load page event
           : "signed-out",
     },
   };
+  
+  
 
    // carousel cards updated
   let xcards = document.querySelector('#main-wrapper--exp237 #content')
@@ -613,10 +631,21 @@ window.addEventListener("load", function () { // load page event
     prev = document.querySelector("button#prev"),
 	next = document.querySelector("button#next"),
     console.log('cards before: ',cardsNum, cardsWidth);
+    
+    
     cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
   }
+  
+  
+   // total offers in cards
+  const doCardUpdates = {
+  	init: () => {
+  		cardsBeenAdded();
+  		//getTotalOffersInCards();
+  	}
+  }
 
-  new ResizeObserver(cardsBeenAdded).observe(xcards)
+  new ResizeObserver(doCardUpdates.init).observe(xcards)
 
   //card-close event
   window.addEventListener('click', function(e) {
@@ -631,9 +660,15 @@ window.addEventListener("load", function () { // load page event
           } 
       }
   });
+  
+  
+ 
+  
+ 
 
   try {
     let options = sparksOptions;
+    console.log('sparksOptions ', options);
 
     const checkOptions = () => {
         return options &&
@@ -652,7 +687,10 @@ window.addEventListener("load", function () { // load page event
       };
 
     if (checkOptions() !== false && checkStorage() !== false) {
-      console.clear();
+    	let aloffrs = sparksOptions.allOffers.allOffers;
+    	getTotalOffersInCards(aloffrs);
+    
+      //console.clear();
       console.log(
         `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
       );
