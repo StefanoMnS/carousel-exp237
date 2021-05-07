@@ -14,91 +14,30 @@ externalScripts()
 
 
 var carouselData = (function () {
+    
     return {
       init: function () {
         this.doCards()
       },
-
+     
       sparkCards: [
-        {
-          id: '',
+        { //sample id#s 9019, 6883  
+          
+          id: 0,
           className: 'hidden',
           inline: '',
           type: 'viewBag',
           close: 'close-card',
           closeEle: 'X',
           footer: 'New Sparks offers waiting for you',
-          image:
-            'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-          width: '246',
+          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
+          width: 246,
           height: 150,
-          totalOffers: 0
-          
+          showNotification: true,
+          tcards:0
         },
         {
-          id: '',
-          className: 'hidden',
-          inline: '',
-          type: 'viewOrder',
-          close: 'close-card',
-          closeEle: 'X',
-          footer: '20% Off your next purchase.',
-          image:
-            'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-            width: 246,
-            height: 150,
-            totalOffers: 0
-         
-        },
-
-        {
-          id: '',
-          className: 'hidden',
-          inline: '',
-          type: 'viewBag',
-          close: 'close-card',
-          closeEle: 'X',
-          footer: 'New Sparks offers waiting for you',
-          image:
-            'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-            width: 246,
-            height: 150,
-            totalOffers: 0
-          
-        },
-        {
-          id: '',
-          className: 'hidden',
-          inline: '',
-          type: 'viewOrder',
-          close: 'close-card',
-          closeEle: 'X',
-          footer: '20% Off your next purchase.',
-          image:
-            'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-            width: 246,
-            height: 150,
-            totalOffers: 0
-         
-        },
-
-        {
-          id: '',
-          className: 'hidden',
-          inline: '',
-          type: 'viewBag',
-          close: 'close-card',
-          closeEle: 'X',
-          footer: 'It\"s time to join the POTTY.',
-          image:
-            'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-            width: 246,
-            height: 150,
-            totalOffers: 0
-          
-        },
-        {
-          id: '',
+          id: 0,
           className: 'hidden',
           inline: '',
           type: 'viewOrder',
@@ -108,14 +47,87 @@ var carouselData = (function () {
           image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
           width: 246,
           height: 150,
-          totalOffers: 0
-         
-        }
+          showNotification: false,
+          tcards:0,
+          emjIcon: true,
+        },
+
+        {
+          id: 0,
+          className: 'hidden',
+          inline: '',
+          type: 'viewBag',
+          close: 'close-card',
+          closeEle: 'X',
+          footer: 'New Sparks offers waiting for you',
+          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
+          width: 246,
+          height: 150,
+          showNotification: false,
+          tcards:0,
+          emjIcon: false,
+          
+        },
+        {
+          id: 0,
+          className: 'hidden',
+          inline: '',
+          type: 'viewOrder',
+          close: 'close-card',
+          closeEle: 'X',
+          footer: '20% Off your next purchase.',
+          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
+          width: 246,
+          height: 150,
+          showNotification: false,
+          tcards:0,
+          emjIcon: false,
+        },
+
+        {
+          id: 0,
+          className: 'hidden',
+          inline: '',
+          type: 'viewBag',
+          close: 'close-card',
+          closeEle: 'X',
+          footer: 'It\"s time to join the POTTY.',
+          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
+          width: 246,
+          height: 150,
+          showNotification: false,
+          tcards:0,
+          emjIcon: false,
+        },
+        {
+          id: 0,
+          className: 'hidden',
+          inline: '',
+          type: 'viewOrder',
+          close: 'close-card',
+          closeEle: 'X',
+          footer: '20% Off your next purchase.',
+          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
+          width: 246,
+          height: 150,
+          showNotification: false,
+          tcards:0,
+          emjIcon: false,
+        },
+    
       ],
 
-      addIds: (spks) => spks.map((itm,idx) => itm.id = idx),
+      getSparks: () => {
+        let optns = JSON.parse(localStorage.getItem('sparkOptions'));
+        return optns.allOffers.allOffers;
+      },
+
+      // returns 4 digit int
+      addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
   
       compileCards: function (cards) {
+       
+        let isNotif = this.getSparks();
         const crds = document.createElement('div')
         let cardsContent = ''
         for (let c = 0; c < cards.length; c++) {
@@ -128,14 +140,26 @@ var carouselData = (function () {
             '" src="' +
             cards[c].image + 
             '"/>';
-            cardsContent += `<div class="card-notification__wrapper"><span class="card-notification">
-            ${cards[c].totalOffers || 0}</span></div>`;
+          
+            cardsContent += `<div class="card-notification__wrapper">`;
+            cardsContent += 
 
-          cardsContent += `<p class="heading">${cards[c].footer}<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti2.png" /></p></section>`
+            cards[c].showNotification ? '<span class="card-notification">'+ isNotif + '</span>' : '';
+
+            cardsContent += `</div>`;
+
+          cardsContent += `<p class="heading">${cards[c].footer}`;
+
+          cardsContent += cards[c].emjIcon ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti2.png" />' : '';
+
+          cardsContent += `</p>`;
+          
           cardsContent += `<span class="${cards[c].close}">${cards[c].closeEle}</span></div>`
         }
+
         crds.innerHTML = cardsContent
-        return crds
+        return crds;
+
       },
 
       callOut: function(t) {
@@ -143,8 +167,9 @@ var carouselData = (function () {
       },
   
       doCards: function () {
+        
         let timeout;
-        this.addIds(this.sparkCards);
+        this.addIds();
         let spcrds = this.sparkCards
         new Promise(resolve => {
           resolve(this.compileCards(spcrds))
@@ -188,4 +213,5 @@ var carouselData = (function () {
   
 
 
+  
   
