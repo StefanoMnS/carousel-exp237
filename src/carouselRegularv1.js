@@ -17,6 +17,7 @@ externalScripts()
 
 var closCarousel237 = (function () {
   let index = 0;
+  
   // const dotRatio = 0
   const getHandle = function () {
     if (document.querySelector(".main-container") !== null) {
@@ -385,67 +386,93 @@ const mainStyles = `
         ? rmService.parentElement.removeChild(rmService)
         : false;
     },
+    
+    doScroll: {
+    	
+    	disableScroll: function() {
+		    // Get the current page scroll position
+		    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		      // if any scroll is attempted, set this to the previous value
+		      window.onscroll = function() {
+		         window.scrollTo(scrollLeft, scrollTop);
+		      };
+		},
+  
+		enableScroll: function() {
+		    window.onscroll = function() {};
+		}	
+    },
 
     doCarouselSecondAct: function () {
-      const gap = 16;
+       const gap = 16;
+      let scrollSeg = 1200;
       const carousel = document.getElementById("carousel--container");
       const content = document.getElementById("content");
       const next = document.getElementById("next");
       const prev = document.getElementById("prev");
       
-      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('prev', true)
+      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('prev', true);
 
       next.addEventListener("click", (e) => {
-        carousel.scrollBy(+(width + gap), 0);
+      	this.doScroll.disableScroll();
+        carousel.scrollBy(+(scrollSeg), 0);
         carousel.scrollTop;
         
+       
+       
+        
+        
+        console.log('carousel scrollLeft ', carousel.scrollLeft,  'scroll width', carousel.scrollWidth);
+        
+        if (scrollSeg ===  carousel.scrollLeft) {
+        	this.showHideArrows('next', true)
+        }
+      
         
         if (carousel.scrollLeft === 0) {
-           closCarousel237.doDots(+0);
+          this.showHideArrows('prev', false);
         }
-        
-         if (carousel.scrollLeft !== 0) {
-           closCarousel237.doDots(+1);
-        }
-        
-        if (window.innerWidth > 1024 ) {
-        	prev.classList.remove('hidden');
-        	this.showHideArrows('prev', false);
-        }
-        
-        
-
-        if (carousel.scrollWidth - width - gap <= carousel.scrollLeft + width + gap) {
-        	this.showHideArrows('next',true)
-            closCarousel237.doDots(0);
-        }
+    
         return carousel.scrollTop;
       });
 
       prev.addEventListener("click", (e) => {
-        carousel.scrollBy(-(width + gap), 0);
+      	this.doScroll.disableScroll();
+        carousel.scrollBy(-(scrollSeg), 0);
+        carousel.scrollLeft;
+        carousel.scrollTop;
+        
+       console.log('carousel scrollLeft ', carousel.scrollLeft,  'scroll width', carousel.scrollWidth, 'content scrollWidth ', content.scrollWidth);
       
-
-        if (carousel.scrollLeft - width - gap <= 0) {
-        	this.showHideArrows('prev',true);
-            closCarousel237.doDots(-1);
-        }
-        if (content.scrollWidth - width - gap <= carousel.scrollLeft) {
+   
+        
+         if (carousel.scrollLeft - scrollSeg <= 0) {
+        	 this.showHideArrows('prev',true);
+         }
+        
+        
+         if (content.scrollWidth - carousel.scrollLeft - scrollSeg <= scrollSeg) {
         		this.showHideArrows('next', false);
-        		closCarousel237.doDots(-1);
+        	
         }
         
-        return carousel.scrollTop;
+
+        
+        return;
       });
       
       if (window.innerWidth > 1024) {
         	this.showHideArrows('next', true);
       }
 
-      let width = carousel.offsetWidth;
-      window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
+
+      //let width = carousel.offsetWidth;
+      window.addEventListener("resize", (e) => (scrollSeg = carousel.offsetWidth));
       
-      window.screen.size > 1024 ? this.showHideArrows('prev',false) : this.showHideArrows('prev', true)
+      
+      
+
       
     },
 
@@ -464,11 +491,6 @@ const mainStyles = `
            <div id="carousel--container">
            <div id="content">
            
-    
-             
-           
-           
-           
            </div>
            <div class="carousel__dots">
               <a class="carousel--dot">
@@ -485,12 +507,12 @@ const mainStyles = `
               </a>
            </div>
         </div>
-        <button id="prev">
+        <button hidden id="prev">
            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path fill="none" border="none" stroke="#333" d="M16 11l9 9-9 9"/>
            </svg>
         </button>
-        <button id="next">
+        <button hidden id="next">
            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
               <path fill="none" stroke="#333" d="M16 11l9 9-9 9"/>
            </svg>
@@ -558,8 +580,13 @@ window.addEventListener("load", function () { // load page event
   // init activity
   closCarousel237.init();
   let times = 0;
-  let insertGreeding;
   let allOffers;  //user sparks total
+  // carousel cards updated
+  let xcards = document.querySelector('#main-wrapper--exp237 #content')
+  let cardsNum = 0
+  let insertGreeding = document.querySelector(".account--holder__greet p");
+  
+  
  
   
   const allSparks = function () {
@@ -634,7 +661,7 @@ window.addEventListener("load", function () { // load page event
   function doGreed(options) {
     const { visitorName } = options;
     const greet = document.getElementById("helloText");
-    insertGreeding = document.querySelector(".account--holder__greet p");
+    
     insertGreeding.hidden = true;
     const isGreeting = greet.textContent.trim();
     const visitNGreet = isGreeting + ' ' + visitorName;
@@ -663,32 +690,36 @@ window.addEventListener("load", function () { // load page event
   
   
 
-   // carousel cards updated
-  let xcards = document.querySelector('#main-wrapper--exp237 #content')
-  let cardsNum = 0
+  
   
   function cardsBeenAdded () {
-    console.log('resize observer called - cards been updated')
-    let cardsWidth = xcards.offsetWidth;
-    cardsNum = Math.round(cardsWidth/ 260);
-    //arrows
-    prev = document.querySelector("button#prev"),
-	next = document.querySelector("button#next"),
-    console.log('cards before: ',cardsNum, cardsWidth);
-    
-    cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
+  	let cardsWidth = xcards.offsetWidth;
+  	cardsNum = Math.round(cardsWidth/ 300);
+  	console.log('resizedObserver - cards before: ',cardsNum, cardsWidth);
+  	
+  	 if (document.getElementById('content').outerText !== "" && 
+  	 document.getElementById('content').children[0].dataset.id.length === 4) {
+	  	//pgload
+	  	insertGreeding.hidden = false;
+	    //arrows
+	 
+	    prev = document.querySelector("button#prev"),
+		next = document.querySelector("button#next"),
+	    cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
+  	}
   }
   
-   // total offers in cards
+  // total offers in cards
   const doCardUpdates = {
   	init: () => {
   		cardsBeenAdded();
-  		insertGreeding.hidden = false;
+  		//insertGreeding.hidden = false;
   	}
   }
-
-  new ResizeObserver(doCardUpdates.init).observe(xcards)
-
+  
+  //check num of cards
+  new ResizeObserver(doCardUpdates.init).observe(xcards) 
+  
   //card-close event
   window.addEventListener('click', function(e) {
     if (document.querySelector('#main-wrapper--exp237 #content') && 
@@ -703,11 +734,7 @@ window.addEventListener("load", function () { // load page event
       }
   });
   
-  
  
-  
- 
-
   try {
     let options = sparksOptions, cstorage,coptions;
     console.log('sparksOptions ', options);
@@ -730,9 +757,7 @@ window.addEventListener("load", function () { // load page event
       checkStorage(sparksOptions);
       checkOptions();
       
-      
-      
-
+  
       console.clear();
       console.log(
         `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
