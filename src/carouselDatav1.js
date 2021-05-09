@@ -14,14 +14,21 @@ externalScripts()
 
 
 var carouselData = (function () {
+    let sparkOptionsComplete = {};
+    const  getSparks = () => {
+      let optns = JSON.parse(localStorage.getItem('sparkOptionsComplete'));
+      console.log('sparkOptionsComplete', optns);
+      return optns;
+    }
     
     return {
       init: function () {
-        this.doCards()
+        sparkOptionsComplete = getSparks();
+        this.doCards();
       },
      
-      sparkCards: [
-        { //sample id#s 9019, 6883  
+      sparkCards: [//sample id#s 9019, 6883 
+        { //ids passed into html as datasets: 'data-id'
           
           id: 0,
           className: 'hidden',
@@ -34,7 +41,8 @@ var carouselData = (function () {
           width: 246,
           height: 150,
           showNotification: true,
-          tcards:0
+          tcards:0,
+          emjIcon: true,
         },
         {
           id: 0,
@@ -99,39 +107,19 @@ var carouselData = (function () {
           tcards:0,
           emjIcon: false,
         },
-        {
-          id: 0,
-          className: 'hidden',
-          inline: '',
-          type: 'viewOrder',
-          close: 'close-card',
-          closeEle: 'X',
-          footer: '20% Off your next purchase.',
-          image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-          width: 246,
-          height: 150,
-          showNotification: false,
-          tcards:0,
-          emjIcon: false,
-        },
     
       ],
-
-      getSparks: () => {
-        let optns = JSON.parse(localStorage.getItem('sparkOptions'));
-        return optns.allOffers.allOffers;
-      },
 
       // returns 4 digit int
       addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
   
       compileCards: function (cards) {
-       
-        let isNotif = this.getSparks();
+
+        let isNotif = sparkOptionsComplete.totalOffers;
         const crds = document.createElement('div')
         let cardsContent = ''
         for (let c = 0; c < cards.length; c++) {
-          cardsContent += '<div class="item ' + cards[c].className + '">'
+          cardsContent += '<div data-id="' + cards[c].id + '" class="item ' + cards[c].className + '">'
           cardsContent +=
             '<img class="card-logo" style="mix-blend-mode:' + cards[c].inline + '" width="' +
             parseInt(cards[c].width) +
@@ -146,13 +134,13 @@ var carouselData = (function () {
 
             cards[c].showNotification ? '<span class="card-notification">'+ isNotif + '</span>' : '';
 
-            cardsContent += `</div>`;
+            cardsContent += '</div>';
 
           cardsContent += `<p class="heading">${cards[c].footer}`;
+          
+          cardsContent += cards[c].emjIcon ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti2.png" />' : '<img src=""/>';
 
-          cardsContent += cards[c].emjIcon ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti2.png" />' : '';
-
-          cardsContent += `</p>`;
+          cardsContent += '</p>';
           
           cardsContent += `<span class="${cards[c].close}">${cards[c].closeEle}</span></div>`
         }
