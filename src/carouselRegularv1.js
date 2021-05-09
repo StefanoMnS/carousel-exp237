@@ -29,7 +29,8 @@ var closCarousel237 = (function () {
       return document.querySelector(".container");
     }
   };
-  const mainStyles = `
+  
+const mainStyles = `
   .main-wrapper--exp237 {
     margin: 0;
     box-sizing: border-box;
@@ -42,278 +43,278 @@ var closCarousel237 = (function () {
     background-color: #F1EDEC;
     width: 100%;
 }
-#main-wrapper--exp237 {
-    box-sizing: border-box;
-    background-color: transparent;
-    width: 100%;
-    max-width: 1280px;
-    height: 100%;
-    margin: 0 auto;
-    flex-direction: column;
-    display: flex;
-    justify-content: space-around;
-}
-#main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
-    display: none;
-    height: 0;
-}
-#carousel--container {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow-y: scroll;
-}
-@keyframes fader {
-    from {
-        opacity: 0.5;
-        transform: translateX(10%) 
-   }
-    to {
-        opacity: 1;
-   }
-}
-#main-wrapper--exp237 #carousel--wrapper {
-    width: 100%;
-    margin: 0;
-    padding: 0 1rem;
-    display: flex;
-    flex-wrap: wrap;
-}
-#main-wrapper--exp237 #content {
-    display: grid;
-    grid-gap: 16px;
-    grid-auto-flow: column;
-    margin: auto;
-    box-sizing: border-box;
-    position: relative;
-}
-.item span.close-card {
-    transition: all .75s linear 250ms;
-    color: inherit;
-    font-weight: 300;
-    display: flex;
-    height: auto;
-    opacity: 1;
-    cursor: pointer;
-    transform: scaleX(1.4) translate(-9px, -22px);
-}
-#main-wrapper--exp237 .account--holder__greet {
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
-}
-#main-wrapper--exp237 .account--holder__greet p {
-    margin: 0;
-    font-weight: normal;
-    line-height: 40px;
-}
-#main-wrapper--exp237 .item {
-    border-radius: 8px;
-    height: 78px;
-    width: 300px;
-    background: #fff;
-    border: 1px solid #d9d9d9;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-#main-wrapper--exp237 .item.hidden {
-    display: none;
-}
-#main-wrapper--exp237 .item img.card-logo {
-    transition: display .45s linear 25ms;
-    height: auto !important;
-    width: 100%;
-    padding: 0;
-    position: relative;
-    max-width: 112px;
-    transform: rotate(360deg);
-}
-#main-wrapper--exp237 .item .heading {
-    letter-spacing: 0;
-    color: #000000;
-    font-family: 'MS London eText Semibold';
-    text-align: left;
-    display: flex;
-    line-height: 20px;
-    margin: 0;
-    width: 160px;
-    font-size: 14px;
-    margin-left: -70px;
-    
-}
-#main-wrapper--exp237 img.card-confetti {
-    width: 20px;
-    height: 20px;
-    transform: translate(-40px, 20px);
-    object-fit: contain;
-    align-self: auto;
-}
-.item .heading img.card-confetti::before {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    object-fit: contain;
-    align-self: flex-end;
-}
-@media only screen and (max-width: 1024px) {
-    #main-wrapper--exp237 .carousel--dot span {
-        display: none;
-   }
-    button#prev, button#next {
-        display: none;
-   }
-    button#prev.hidden, button#next.hidden {
-        display: none;
-   }
-}
-.welcome--message {
-    width: 100%;
-    display: flex;
-    margin: 0.3rem 0 0 0;
-    justify-content: flex-start;
-}
-.welcome--message p {
-    margin: 0;
-    margin-left: 6.50vw;
-}
-.carousel__wrapper.hidden {
-    visibility: hidden;
-}
-.carousel__wrapper {
-    transition: all 0.45s linear 150ms;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #f2f2f2;
-    position: relative;
-}
-.main-wrapper--exp236 {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 170px;
-    background-color: #F1EDEC;
-    width: 100%;
-}
-#carousel--wrapper {
-    width: 90%;
-    margin-left: 10%;
-    position: relative;
-    padding-top: 60px;
-    padding-bottom: 33px;
-    background: #F1EDEC;
-}
-#carousel--container {
-    height: 78px;
-    margin: 0;
-    scroll-behavior: smooth;
-    margin: 0;
-    -ms-overflow-style: none;
-   /* IE and Edge */
-    scrollbar-width: none;
-   /* Firefox */
-}
-#main-wrapper--exp237 #carousel--wrapper .carousel__dots {
-    display: none !important;
-}
-#main-wrapper--exp237 .card-notification__wrapper {
-    position: relative;
-    top: -30px;
-    left: -24px;
-    background: rgba(255,255,255,.35);
-}
-#main-wrapper--exp237 .card-notification {
-    height: 22px;
-    width: 22px;
-    border: 1px solid rgb(255 255 255);
-    border-radius: 50%;
-    position: absolute;
-    background-color: #333;
-    color: rgb(255 255 255);
-    line-height: 20px;
-    text-align: center;
-    font-size: 12px;
-    top: 0px;
-    right: 29px;
-   
-}
-@media only screen and (min-width: 1025px) {
-    #main-wrapper--exp237 #carousel--wrapper {
-        width: 90%;
-        margin-left: 10%;
-        position: relative;
-        padding-top: 22px;
-        padding-bottom: 31px;
-        background: #F1EDEC;
-   }
-    #main-wrapper--exp237 .carousel--dot span {
-        display: none;
-   }
-    #main-wrapper--exp237 #carousel--wrapper button#prev:focus,#carousel--wrapper button#next:focus {
-        outline: none;
-        box-shadow: none;
-   }
-   
-    #main-wrapper--exp237 button svg {
-        width: 35px;
-        height: 40px;
-        fill: rgba(255,255,255,.35);
-        width: 35px;
-	    fill: rgba(255,255,255,.35);
-	    stroke-width: 2px;
-	    backdrop-filter: opacity(0.5);
-   }
-    #main-wrapper--exp237 #prev, #main-wrapper--exp237 #next {
-        justify-content: center;
-        align-content: center;
-        width: 35px;
+	#main-wrapper--exp237 {
+	    box-sizing: border-box;
+	    background-color: transparent;
+	    width: 100%;
+	    max-width: 1280px;
+	    height: 100%;
+	    margin: 0 auto;
+	    flex-direction: column;
+	    display: flex;
+	    justify-content: space-around;
+	}
+	#main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
+	    display: none;
+	    height: 0;
+	}
+	#carousel--container {
+	    margin: 0;
+	    display: flex;
+	    flex-direction: column;
+	    width: 100%;
+	    overflow-y: scroll;
+	}
+	@keyframes fader {
+	    from {
+	        opacity: 0.5;
+	        transform: translateX(10%) 
+	   }
+	    to {
+	        opacity: 1;
+	   }
+	}
+	#main-wrapper--exp237 #carousel--wrapper {
+	    width: 100%;
+	    margin: 0;
+	    padding: 0 1rem;
+	    display: flex;
+	    flex-wrap: wrap;
+	}
+	#main-wrapper--exp237 #content {
+	    display: grid;
+	    grid-gap: 16px;
+	    grid-auto-flow: column;
+	    margin: auto;
+	    box-sizing: border-box;
+	    position: relative;
+	}
+	.item span.close-card {
+	    transition: all .75s linear 250ms;
+	    color: inherit;
+	    font-weight: 300;
+	    display: flex;
+	    height: auto;
+	    opacity: 1;
+	    cursor: pointer;
+	    transform: scaleX(1.4) translate(-9px, -22px);
+	}
+	#main-wrapper--exp237 .account--holder__greet {
 	    height: 40px;
-	    fill: rgba(255,255,255,.35);
-	    stroke-width: 2px;
-	    backdrop-filter: opacity(0.5);
-        border: none;
-        padding: 1px;
-        border-radius: 0;
-        outline: 0;
-        cursor: pointer;
-        position: absolute;
-        line-height: 0.5;
-   }
-    #main-wrapper--exp237 #prev {
-        top: 60%;
-        left: 0;
-        left: -75px;
-        transform: translate(50%, -50%) rotate(180deg);
-   }
-    #main-wrapper--exp237 #next {
-        top: 60%;
-        right: 16%;
-        transform: translate(-50%, -50%);
-        background-color: initial; 
-   }
-    #main-wrapper--exp237 .account--holder__greet {
-        display: flex;
-        margin-left: 0;
-        justify-content: flex-start;
-   }
-    #main-wrapper--exp237 .account--holder__greet p {
-        margin: 0;
-	    padding: 0 5px;
-	    font-weight: 600;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    width: 100%;
+	}
+	#main-wrapper--exp237 .account--holder__greet p {
+	    margin: 0;
+	    font-weight: normal;
+	    line-height: 40px;
+	}
+	#main-wrapper--exp237 .item {
+	    border-radius: 8px;
+	    height: 78px;
+	    width: 300px;
+	    background: #fff;
+	    border: 1px solid #d9d9d9;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
+	    flex-wrap: nowrap;
+	}
+	#main-wrapper--exp237 .item.hidden {
+	    display: none;
+	}
+	#main-wrapper--exp237 .item img.card-logo {
+	    transition: display .45s linear 25ms;
+	    height: auto !important;
+	    width: 100%;
+	    padding: 0;
+	    position: relative;
+	    max-width: 112px;
+	    transform: rotate(360deg);
+	}
+	#main-wrapper--exp237 .item .heading {
 	    letter-spacing: 0;
-	    width: 213px;
-	    font-size: 18px;
-	    font-family: 'MS London eText';
-   }
+	    color: #000000;
+	    font-family: 'MS London eText Semibold';
+	    text-align: left;
+	    display: flex;
+	    line-height: 20px;
+	    margin: 0;
+	    width: 160px;
+	    font-size: 14px;
+	    margin-left: -70px;
+	    
+	}
+	#main-wrapper--exp237 img.card-confetti {
+	    width: 20px;
+	    height: 20px;
+	    transform: translate(-40px, 20px);
+	    object-fit: contain;
+	    align-self: auto;
+	}
+	.item .heading img.card-confetti::before {
+	    width: 20px;
+	    height: 20px;
+	    display: inline-block;
+	    object-fit: contain;
+	    align-self: flex-end;
+	}
+	@media only screen and (max-width: 1024px) {
+	    #main-wrapper--exp237 .carousel--dot span {
+	        display: none;
+	   }
+	    button#prev, button#next {
+	        display: none;
+	   }
+	    button#prev.hidden, button#next.hidden {
+	        display: none;
+	   }
+	}
+	.welcome--message {
+	    width: 100%;
+	    display: flex;
+	    margin: 0.3rem 0 0 0;
+	    justify-content: flex-start;
+	}
+	.welcome--message p {
+	    margin: 0;
+	    margin-left: 6.50vw;
+	}
+	.carousel__wrapper.hidden {
+	    visibility: hidden;
+	}
+	.carousel__wrapper {
+	    transition: all 0.45s linear 150ms;
+	    width: 100%;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    background-color: #f2f2f2;
+	    position: relative;
+	}
+	.main-wrapper--exp236 {
+	    margin: 0;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    flex-direction: column;
+	    height: 170px;
+	    background-color: #F1EDEC;
+	    width: 100%;
+	}
+	#carousel--wrapper {
+	    width: 90%;
+	    margin-left: 10%;
+	    position: relative;
+	    padding-top: 60px;
+	    padding-bottom: 33px;
+	    background: #F1EDEC;
+	}
+	#carousel--container {
+	    height: 78px;
+	    margin: 0;
+	    scroll-behavior: smooth;
+	    margin: 0;
+	    -ms-overflow-style: none;
+	   /* IE and Edge */
+	    scrollbar-width: none;
+	   /* Firefox */
+	}
+	#main-wrapper--exp237 #carousel--wrapper .carousel__dots {
+	    display: none !important;
+	}
+	#main-wrapper--exp237 .card-notification__wrapper {
+	    position: relative;
+	    top: -30px;
+	    left: -24px;
+	    background: rgba(255,255,255,.35);
+	}
+	#main-wrapper--exp237 .card-notification {
+	    height: 22px;
+	    width: 22px;
+	    border: 1px solid rgb(255 255 255);
+	    border-radius: 50%;
+	    position: absolute;
+	    background-color: #333;
+	    color: rgb(255 255 255);
+	    line-height: 20px;
+	    text-align: center;
+	    font-size: 12px;
+	    top: 0px;
+	    right: 29px;
+	   
+	}
+	@media only screen and (min-width: 1025px) {
+	    #main-wrapper--exp237 #carousel--wrapper {
+	        width: 90%;
+	        margin-left: 10%;
+	        position: relative;
+	        padding-top: 22px;
+	        padding-bottom: 31px;
+	        background: #F1EDEC;
+	   }
+	    #main-wrapper--exp237 .carousel--dot span {
+	        display: none;
+	   }
+	    #main-wrapper--exp237 #carousel--wrapper button#prev:focus,#carousel--wrapper button#next:focus {
+	        outline: none;
+	        box-shadow: none;
+	   }
+	   
+	    #main-wrapper--exp237 button svg {
+	        width: 35px;
+	        height: 40px;
+	        fill: rgba(255,255,255,.35);
+	        width: 35px;
+		    fill: rgba(255,255,255,.35);
+		    stroke-width: 2px;
+		    backdrop-filter: opacity(0.5);
+	   }
+	    #main-wrapper--exp237 #prev, #main-wrapper--exp237 #next {
+	        justify-content: center;
+	        align-content: center;
+	        width: 35px;
+		    height: 40px;
+		    fill: rgba(255,255,255,.35);
+		    stroke-width: 2px;
+		    backdrop-filter: opacity(0.5);
+	        border: none;
+	        padding: 1px;
+	        border-radius: 0;
+	        outline: 0;
+	        cursor: pointer;
+	        position: absolute;
+	        line-height: 0.5;
+	   }
+	    #main-wrapper--exp237 #prev {
+	        top: 60%;
+	        left: 0;
+	        left: -75px;
+	        transform: translate(50%, -50%) rotate(180deg);
+	   }
+	    #main-wrapper--exp237 #next {
+	        top: 60%;
+	        right: 16%;
+	        transform: translate(-50%, -50%);
+	        background-color: initial; 
+	   }
+	    #main-wrapper--exp237 .account--holder__greet {
+	        display: flex;
+	        margin-left: 0;
+	        justify-content: flex-start;
+	   }
+	    #main-wrapper--exp237 .account--holder__greet p {
+	        margin: 0;
+		    padding: 0 5px;
+		    font-weight: 600;
+		    letter-spacing: 0;
+		    width: 213px;
+		    font-size: 18px;
+		    font-family: 'MS London eText';
+	   }
 }
 
   `;
@@ -357,7 +358,7 @@ var closCarousel237 = (function () {
 
     },
     
-    showHideArrows: (ele,val) =>  {
+    showHideArrows: function(ele,val) {
       const arrow = document.getElementById(ele);
       arrow.hidden = val;
     },
@@ -557,6 +558,7 @@ window.addEventListener("load", function () { // load page event
   // init activity
   closCarousel237.init();
   let times = 0;
+  let insertGreeding;
   let allOffers;  //user sparks total
  
   
@@ -632,7 +634,8 @@ window.addEventListener("load", function () { // load page event
   function doGreed(options) {
     const { visitorName } = options;
     const greet = document.getElementById("helloText");
-    const insertGreeding = document.querySelector(".account--holder__greet p");
+    insertGreeding = document.querySelector(".account--holder__greet p");
+    insertGreeding.hidden = true;
     const isGreeting = greet.textContent.trim();
     const visitNGreet = isGreeting + ' ' + visitorName;
     insertGreeding.textContent = visitNGreet;
@@ -644,8 +647,8 @@ window.addEventListener("load", function () { // load page event
     name: "sparksOptions",
     //fetch from session first
     allOffers: allSparks(), 
-    //not in session call api
-    allFetchedSparks: fetchSparks(),
+    //not in session call api -disabled below
+    //allFetchedSparks: fetchSparks(),
     visitorName:// cookieName
       getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
     visitorValue: //cookieValue
@@ -663,6 +666,7 @@ window.addEventListener("load", function () { // load page event
    // carousel cards updated
   let xcards = document.querySelector('#main-wrapper--exp237 #content')
   let cardsNum = 0
+  
   function cardsBeenAdded () {
     console.log('resize observer called - cards been updated')
     let cardsWidth = xcards.offsetWidth;
@@ -672,16 +676,14 @@ window.addEventListener("load", function () { // load page event
 	next = document.querySelector("button#next"),
     console.log('cards before: ',cardsNum, cardsWidth);
     
-    
     cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
   }
-  
   
    // total offers in cards
   const doCardUpdates = {
   	init: () => {
   		cardsBeenAdded();
-  		//getTotalOffersInCards();
+  		insertGreeding.hidden = false;
   	}
   }
 
@@ -727,6 +729,9 @@ window.addEventListener("load", function () { // load page event
       };
       checkStorage(sparksOptions);
       checkOptions();
+      
+      
+      
 
       console.clear();
       console.log(
