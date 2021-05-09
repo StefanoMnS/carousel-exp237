@@ -319,8 +319,6 @@ var closCarousel237 = (function () {
   `;
     
     
-    
-    
   return {
     addCSS: function (css) {
       const head = document.getElementsByTagName("head")[0];
@@ -577,22 +575,59 @@ window.addEventListener("load", function () { // load page event
     }
   };
 
-  function getCookie(cname) {
+  function getCookie(cname,  nameOrValue='cookieName') {
+    let nmval = nameOrValue;
     const name = cname + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
     const ca = decodedCookie.split(";");
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) === " ") {
-        c = c.substring(1);
+        c = c.substring(1,c.length);
       }
       if (c.indexOf(name) === 0) {
         const result = c.substring(name.length, c.length);
-        const output = result.slice(0, result.indexOf(" ") + 2);
-        return output;
+        let cookieName = result.split(' ')[0];
+        let preval = result.split(' ')[1];
+        let cookieValue = preval.split('_')[1];
+        return nmval === 'cookieName' ? cookieName : cookieValue;
       }
     }
   }
+  
+  /*
+	Handy information to have:
+	-------------------------
+	name: MS_LOGIN_COOKIE_10151,val: [-1,R,L,,]
+	name: MS_USER_COOKIE_10151, val: [Default 1_529516839]
+	
+	// root api
+	url = 'https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2';
+  
+  */
+  
+  function fetchSparks() {
+  	let url = 'https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2';
+  	let cookieValue = getCookie("MS_USER_COOKIE_10151", "cookieValue");
+  	let composed = '{"externalCustomerId":' + '"' + cookieValue + '"' + ',"platform":"UK_DIGITAL"}';
+  	let encodedCookie = btoa(composed);
+  	let secretParams = "MNSSharedSecret 620sSJ|xq-2K3?T" + " " + encodedCookie;
+  	//get data
+  	fetch(url, {
+  		headers: {
+  			'Authorization': secretParams
+  		}
+  	}).then(data => data.json())
+  	.then(res => {
+  		console.log('sparks options ', res);
+  		//keep copy in localStorage along with sparksOptions
+  		localStorage.setItem('sparkOptionsComplete', 
+  		JSON.stringify(res.offersBreakdown));
+  	})
+  	
+  }
+  
+  
 
   function doGreed(options) {
     const { visitorName } = options;
@@ -604,13 +639,18 @@ window.addEventListener("load", function () { // load page event
   }
 
 
+  // info object
   const sparksOptions = {
     name: "sparksOptions",
-    allOffers: allSparks(),
-    visitorName:
-      getCookie("MS_USER_COOKIE_10151") || "",
-    // visitorStatus
-    other: {
+    //fetch from session first
+    allOffers: allSparks(), 
+    //not in session call api
+    allFetchedSparks: fetchSparks(),
+    visitorName:// cookieName
+      getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
+    visitorValue: //cookieValue
+    getCookie("MS_USER_COOKIE_10151", "cookieValue"),
+    other: {//visitorStatus
       visitorStatus:
         !!this.visitorName && this.visitorName !== ""
           ? "signed-in"
@@ -667,7 +707,7 @@ window.addEventListener("load", function () { // load page event
  
 
   try {
-    let options = sparksOptions;
+    let options = sparksOptions, cstorage,coptions;
     console.log('sparksOptions ', options);
 
     const checkOptions = () => {
@@ -677,24 +717,22 @@ window.addEventListener("load", function () { // load page event
           ? doGreed(options)
           : false;
       },
-      checkStorage = () => {
-        return window.localStorage.getItem("sparksOptions") === null
+      checkStorage = (label) => {
+        return window.localStorage.getItem(label) === null
           ? window.localStorage.setItem(
               "sparkOptions",
-              JSON.stringify(sparksOptions)
+              JSON.stringify(label)
             )
           : false;
       };
+      checkStorage(sparksOptions);
+      checkOptions();
 
-    if (checkOptions() !== false && checkStorage() !== false) {
-    	let aloffrs = sparksOptions.allOffers.allOffers;
-    	getTotalOffersInCards(aloffrs);
-    
-      //console.clear();
+      console.clear();
       console.log(
         `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
       );
-    }
+    
   } catch (err) {
     console.log("TRY again: " + err);
   }
