@@ -1,23 +1,18 @@
 function externalScripts() {
-  [
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js",
-  
-  ].forEach(function(src) {
-    var script = document.createElement('script');
-    script.src = src;
-    script.async = true;
-    document.head.appendChild(script);
-});
-  
+  ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"].forEach(
+    function (src) {
+      var script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  );
 }
-externalScripts()
-
-
-
+externalScripts();
 
 var closCarousel237 = (function () {
   let index = 0;
-  
+
   // const dotRatio = 0
   const getHandle = function () {
     if (document.querySelector(".main-container") !== null) {
@@ -30,8 +25,8 @@ var closCarousel237 = (function () {
       return document.querySelector(".container");
     }
   };
-  
-const mainStyles = `
+
+  const mainStyles = `
   .main-wrapper--exp237 {
     margin: 0;
     box-sizing: border-box;
@@ -66,6 +61,11 @@ const mainStyles = `
 	    width: 100%;
 	    overflow-y: scroll;
 	}
+	
+	#carousel--container.noflow {
+		overflow: hidden;
+	}
+	
 	@keyframes fader {
 	    from {
 	        opacity: 0.5;
@@ -82,6 +82,7 @@ const mainStyles = `
 	    display: flex;
 	    flex-wrap: wrap;
 	}
+	
 	#main-wrapper--exp237 #content {
 	    display: grid;
 	    grid-gap: 16px;
@@ -149,6 +150,7 @@ const mainStyles = `
 	    margin-left: -70px;
 	    
 	}
+	
 	#main-wrapper--exp237 img.card-confetti {
 	    width: 20px;
 	    height: 20px;
@@ -156,6 +158,7 @@ const mainStyles = `
 	    object-fit: contain;
 	    align-self: auto;
 	}
+	
 	.item .heading img.card-confetti::before {
 	    width: 20px;
 	    height: 20px;
@@ -318,9 +321,22 @@ const mainStyles = `
 	   }
 }
 
+	.item.bounce {
+	  animation: bounce 0.75s ease 0ms;
+	}
+	
+	@keyframes bounce {
+	    70% { transform:translateY(0%); }
+	    80% { transform:translateY(-15%); }
+	    90% { transform:translateY(0%); }
+	    95% { transform:translateY(-7%); }
+	    97% { transform:translateY(0%); }
+	    99% { transform:translateY(-3%); }
+	    100% { transform:translateY(0); }
+	}
+
   `;
-    
-    
+
   return {
     addCSS: function (css) {
       const head = document.getElementsByTagName("head")[0];
@@ -333,10 +349,10 @@ const mainStyles = `
       this.doCarouselFirstAct();
       this.doCarouselSecondAct();
     },
-    
+
     doDots: function (d) {
-    	// console.log(index)
-      index+=d;	
+      // console.log(index)
+      index += d;
       const slides = document.querySelectorAll(
         "#main-wrapper--exp237 #content .item"
       );
@@ -344,7 +360,7 @@ const mainStyles = `
         ...document.querySelectorAll("#main-wrapper--exp237 .carousel__dots")[0]
           .children,
       ];
-     
+
       if (index > slides.length - 1) index = 0;
 
       dots.forEach((dot, i) => {
@@ -356,14 +372,12 @@ const mainStyles = `
           dot.classList.add("dot--active");
         }
       });
-
     },
-    
-    showHideArrows: function(ele,val) {
+
+    showHideArrows: function (ele, val) {
       const arrow = document.getElementById(ele);
       arrow.hidden = val;
     },
-    
 
     removeXhandle: function (hndl) {
       let rmService;
@@ -380,100 +394,108 @@ const mainStyles = `
           ? rmService.parentElement.removeChild(rmService)
           : false;
       }
-      
+
       rmService = document.querySelector(handle);
       return document.querySelector(handle) !== null
         ? rmService.parentElement.removeChild(rmService)
         : false;
     },
-    
-    doScroll: {
-    	
-    	disableScroll: function() {
-		    // Get the current page scroll position
-		    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-		      // if any scroll is attempted, set this to the previous value
-		      window.onscroll = function() {
-		         window.scrollTo(scrollLeft, scrollTop);
-		      };
-		},
-  
-		enableScroll: function() {
-		    window.onscroll = function() {};
-		}	
+
+    getBounds: function (elem) {
+      var bounding = elem.getBoundingClientRect();
+      var myElementHeight = elem.offsetHeight;
+      var myElementWidth = elem.offsetWidth;
+
+      if (
+        bounding.top >= -myElementHeight &&
+        bounding.left >= -myElementWidth &&
+        bounding.right <=
+          (window.innerWidth || document.documentElement.clientWidth) +
+            myElementWidth &&
+        bounding.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight) +
+            myElementHeight
+      ) {
+        elem.classList.add("bounce");
+      } else {
+        elem.classList.remove("bounce");
+      }
     },
 
     doCarouselSecondAct: function () {
-       const gap = 16;
-      let scrollSeg = 1200;
+      const gap = 16;
+      let scrollSeg = 1500;
       const carousel = document.getElementById("carousel--container");
+      let width = carousel.offsetWidth;
       const content = document.getElementById("content");
       const next = document.getElementById("next");
       const prev = document.getElementById("prev");
-      
-      window.screen.size > 1024 ? this.showHideArrows('next',false) : this.showHideArrows('prev', true);
+
+      window.screen.width > 1024
+        ? this.showHideArrows("next", false)
+        : this.showHideArrows("prev", true);
+        
+      window.screen.width > 1024 ? carousel.classList.add('noflow') : carousel.classList.remove('noflow');
 
       next.addEventListener("click", (e) => {
-      	this.doScroll.disableScroll();
-        carousel.scrollBy(+(scrollSeg), 0);
+        e.preventDefault();
+        carousel.scrollBy(+width + gap, 0);
         carousel.scrollTop;
-        
-       
-       
-        
-        
-        console.log('carousel scrollLeft ', carousel.scrollLeft,  'scroll width', carousel.scrollWidth);
-        
-        if (scrollSeg ===  carousel.scrollLeft) {
-        	this.showHideArrows('next', true)
-        }
       
-        
-        if (carousel.scrollLeft === 0) {
-          this.showHideArrows('prev', false);
+        let ecards = content.children;
+        //last one!
+        let lastOne = ecards[ecards.length - 1];
+        this.getBounds(lastOne);
+
+        if (carousel.scrollWidth - width - gap <= carousel.scrollLeft + width + gap) {
+        	this.showHideArrows('next',true)
+           
         }
-    
+
+        if (carousel.scrollLeft === 0) {
+          this.showHideArrows("prev", false);
+        }
+        
+        if (window.screen.width > 1024) {
+          this.showHideArrows("prev", false);
+        }
+
+        
         return carousel.scrollTop;
+        
       });
 
       prev.addEventListener("click", (e) => {
-      	this.doScroll.disableScroll();
-        carousel.scrollBy(-(scrollSeg), 0);
-        carousel.scrollLeft;
+        e.preventDefault();
+        carousel.scrollBy(-width + gap, 0);
+        let ecards = content.children;
         carousel.scrollTop;
-        
-       console.log('carousel scrollLeft ', carousel.scrollLeft,  'scroll width', carousel.scrollWidth, 'content scrollWidth ', content.scrollWidth);
-      
-   
-        
-         if (carousel.scrollLeft - scrollSeg <= 0) {
-        	 this.showHideArrows('prev',true);
-         }
-        
-        
-         if (content.scrollWidth - carousel.scrollLeft - scrollSeg <= scrollSeg) {
-        		this.showHideArrows('next', false);
-        	
+        //firstOne!
+        let firstOne = ecards[0];
+        this.getBounds(firstOne);
+
+        if (carousel.scrollLeft - width - gap <= 0) {
+        	this.showHideArrows('prev',true);
+        }
+
+         if (content.scrollWidth - width - gap <= carousel.scrollLeft) {
+        	this.showHideArrows('next', false);
         }
         
-
-        
-        return;
+        return carousel.scrollTop;
       });
       
+      
+
       if (window.innerWidth > 1024) {
-        	this.showHideArrows('next', true);
+        this.showHideArrows("next", true);
       }
-
-
-      //let width = carousel.offsetWidth;
-      window.addEventListener("resize", (e) => (scrollSeg = carousel.offsetWidth));
-      
       
       
 
+      window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
       
+
     },
 
     doCarouselFirstAct: function () {
@@ -524,8 +546,8 @@ const mainStyles = `
       this.removeXhandle(".main-wrapper-exp237");
       this.removeSiteStripe();
       // already exist
-      if (document.querySelector('.main-wrapper--exp237')) {
-        let ele = document.querySelector('.main-wrapper--exp237');
+      if (document.querySelector(".main-wrapper--exp237")) {
+        let ele = document.querySelector(".main-wrapper--exp237");
         ele.parentElement.removeChild(ele);
       }
       // then add.
@@ -541,54 +563,126 @@ const mainStyles = `
   };
 })();
 
-window.addEventListener("resize", () => { // screen resize
-  // update arrows, carousel scroll top and cards into view
-  const isCrsl = document.querySelectorAll("#main-wrapper--exp237 #carousel--container");
-	const prev = document.querySelector("button#prev");
-	const next = document.querySelector("button#next");
-	const carslides = document.querySelectorAll("#main-wrapper--exp237 #content .item");
-    // set both arrow to none
-    [prev,next].forEach(itm => itm.style.display = "none");
-    // update next arrow within fn
-    closCarousel237.doCarouselSecondAct();
-    index = 0;
-    let fi;
-    
-    //bring first slide into view
-    if (document.querySelector('#main-wrapper--exp237 .item') !== null) {
-	   fi = document.querySelector('#main-wrapper--exp237 .item');
-	   fi.scrollIntoView();
-    }
-    
-	//top
-	isCrsl.scrollTop;
-	carslides.scrollTop;
 
-    
-  
+
+
+
+
+window.addEventListener("resize", () => {
+	  // screen resize
+	  // carousel cards updated
+	  let xcards = document.querySelector("#main-wrapper--exp237 #content");
+	  let cardsNum = 0;
+	  let fi;
+	  let insertGreeding = document.querySelector(".account--holder__greet p");
+	  
+	  // update arrows, carousel scroll top and cards into view
+	  const isCrsl = document.querySelectorAll(
+	    "#main-wrapper--exp237 #carousel--container"
+	  );
+	  let carousel = document.querySelector('#carousel--container');
+	  const prev = document.querySelector("button#prev");
+	  const next = document.querySelector("button#next");
+	  const carslides = document.querySelectorAll(
+	    "#main-wrapper--exp237 #content .item"
+	  );
+	  
+	  // set both arrows to none
+	  if(window.screen.width <= 1024) {
+		[prev, next].forEach((itm) => (itm.hidden = true));
+	  }
+	  // update next arrow within fn
+	  closCarousel237.doCarouselSecondAct();
+	 
+	  
+	 
+	  
+	  function cardsBeenAdded() {
+	    let cardsWidth = xcards.offsetWidth;
+	    let carcontainer = document.getElementById('carousel--container');
+	    let next = document.getElementById('next');
+	    let prev = document.getElementById('prev');
+	    cardsNum = Math.round(cardsWidth / 300);
+	    
+	    console.log("resizedObserver - cards before: ", cardsNum, cardsWidth);
+	    console.log('screen-size ', window.screen.width);
+	    console.log('num of cards ', cardsNum);
+	  
+	    
+	    // safety
+	    if(next.hidden === true && prev.hidden === true) {
+	    	carcontainer.classList.remove('noflow');
+	    }
+	  
+	    
+	    if (
+	      document.getElementById("content").outerText !== "" &&
+	      document.getElementById("content").children[0].dataset.id.length === 4) {
+		      //pgload
+		      insertGreeding.hidden = false;
+		      //arrows
+		      cardsNum < 4 && window.screen.width > 1024
+		        ? closCarousel237.showHideArrows("next", true)
+		        : closCarousel237.showHideArrows("prev", true);
+		        
+		      cardsNum >= 4 && window.screen.width > 1024
+		        ? closCarousel237.showHideArrows("next", false)
+		        : closCarousel237.showHideArrows("prev", true);
+		       
+	    }
+	    
+	    //remove greeding
+	    if (cardsNum === 0) {
+	      insertGreeding.hidden = true;
+	      closCarousel237.showHideArrows("next", true);
+	      closCarousel237.showHideArrows("prev", true);
+	    }
+	    
+	    if(window.screen.width > 1024 && cardsNum >= 4) {
+	    	closCarousel237.showHideArrows("next", false);
+	    }
+	    
+	    
+	    
+	  }
+	
+	  // total offers in cards
+	  const doCardUpdates = {
+	    init: () => {
+	      cardsBeenAdded();
+	    },
+	  };
+	
+	  //check num of cards
+	  new ResizeObserver(doCardUpdates.init).observe(xcards);
+	  
+	  //bring first slide into view
+	  if (document.querySelector("#main-wrapper--exp237 .item") !== null) {
+	    fi = document.querySelector("#main-wrapper--exp237 .item");
+	    fi.scrollIntoView();
+	  }
+	  
+	  window.screen.width > 1024 ? carousel.classList.add('noflow') : carousel.classList.remove('noflow');
+	
+	  //top
+	  isCrsl.scrollTop;
+	  carslides.scrollTop;
+	  
+	  
 }); // resize event
 
 
 
-
-
-
-  
-
-
-window.addEventListener("load", function () { // load page event
+window.addEventListener("load", function () {
   // init activity
   closCarousel237.init();
   let times = 0;
-  let allOffers;  //user sparks total
+  let allOffers; //user sparks total
   // carousel cards updated
-  let xcards = document.querySelector('#main-wrapper--exp237 #content')
-  let cardsNum = 0
+  let xcards = document.querySelector("#main-wrapper--exp237 #content");
+  let cardsNum = 0;
   let insertGreeding = document.querySelector(".account--holder__greet p");
-  
-  
- 
-  
+
   const allSparks = function () {
     const data = {};
     if ("sparksSSO" in window.sessionStorage) {
@@ -596,15 +690,15 @@ window.addEventListener("load", function () { // load page event
       data.addedOffers = session.totalAddedOffers;
       data.allOffers = session.totalOffers;
       data.newOffers = data.allOffers - data.addedOffers;
-      
+
       data.allCards = session.allOffers[0].offers;
       // spaks offers user
-      allOfers = data.allOffers
+      allOfers = data.allOffers;
       return data;
     }
   };
 
-  function getCookie(cname,  nameOrValue='cookieName') {
+  function getCookie(cname, nameOrValue = "cookieName") {
     let nmval = nameOrValue;
     const name = cname + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
@@ -612,18 +706,18 @@ window.addEventListener("load", function () { // load page event
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) === " ") {
-        c = c.substring(1,c.length);
+        c = c.substring(1, c.length);
       }
       if (c.indexOf(name) === 0) {
         const result = c.substring(name.length, c.length);
-        let cookieName = result.split(' ')[0];
-        let preval = result.split(' ')[1];
-        let cookieValue = preval.split('_')[1];
-        return nmval === 'cookieName' ? cookieName : cookieValue;
+        let cookieName = result.split(" ")[0];
+        let preval = result.split(" ")[1];
+        let cookieValue = preval.split("_")[1];
+        return nmval === "cookieName" ? cookieName : cookieValue;
       }
     }
   }
-  
+
   /*
 	Handy information to have:
 	-------------------------
@@ -634,110 +728,155 @@ window.addEventListener("load", function () { // load page event
 	url = 'https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2';
   
   */
-  
+
   function fetchSparks() {
-  	let url = 'https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2';
-  	let cookieValue = getCookie("MS_USER_COOKIE_10151", "cookieValue");
-  	let composed = '{"externalCustomerId":' + '"' + cookieValue + '"' + ',"platform":"UK_DIGITAL"}';
-  	let encodedCookie = btoa(composed);
-  	let secretParams = "MNSSharedSecret 620sSJ|xq-2K3?T" + " " + encodedCookie;
-  	//get data
-  	fetch(url, {
-  		headers: {
-  			'Authorization': secretParams
-  		}
-  	}).then(data => data.json())
-  	.then(res => {
-  		console.log('sparks options ', res);
-  		//keep copy in localStorage along with sparksOptions
-  		localStorage.setItem('sparkOptionsComplete', 
-  		JSON.stringify(res.offersBreakdown));
-  	})
-  	
+    let url =
+      "https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2";
+    let cookieValue = getCookie("MS_USER_COOKIE_10151", "cookieValue");
+    let composed =
+      '{"externalCustomerId":' +
+      '"' +
+      cookieValue +
+      '"' +
+      ',"platform":"UK_DIGITAL"}';
+    let encodedCookie = btoa(composed);
+    let secretParams = "MNSSharedSecret 620sSJ|xq-2K3?T" + " " + encodedCookie;
+    //get data
+    fetch(url, {
+      headers: {
+        Authorization: secretParams,
+      },
+    })
+      .then((data) => data.json())
+      .then((res) => {
+        console.log("sparks options ", res);
+        //keep copy in localStorage along with sparksOptions
+        localStorage.setItem(
+          "sparkOptionsComplete",
+          JSON.stringify(res.offersBreakdown)
+        );
+      });
   }
-  
-  
 
   function doGreed(options) {
     const { visitorName } = options;
     const greet = document.getElementById("helloText");
-    
+
     insertGreeding.hidden = true;
     const isGreeting = greet.textContent.trim();
-    const visitNGreet = isGreeting + ' ' + visitorName;
+    const visitNGreet = isGreeting + " " + visitorName;
     insertGreeding.textContent = visitNGreet;
   }
-
 
   // info object
   const sparksOptions = {
     name: "sparksOptions",
     //fetch from session first
-    allOffers: allSparks(), 
+    allOffers: allSparks(),
     //not in session call api -disabled below
-    //allFetchedSparks: fetchSparks(),
-    visitorName:// cookieName
-      getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
-    visitorValue: //cookieValue
-    getCookie("MS_USER_COOKIE_10151", "cookieValue"),
-    other: {//visitorStatus
+    allFetchedSparks: fetchSparks(),
+    // cookieName
+    visitorName: getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
+    //cookieValue
+    visitorValue: getCookie("MS_USER_COOKIE_10151", "cookieValue"),
+    other: {
+      //visitorStatus
       visitorStatus:
         !!this.visitorName && this.visitorName !== ""
           ? "signed-in"
           : "signed-out",
     },
   };
-  
-  
 
   
-  
-  function cardsBeenAdded () {
-  	let cardsWidth = xcards.offsetWidth;
-  	cardsNum = Math.round(cardsWidth/ 300);
-  	console.log('resizedObserver - cards before: ',cardsNum, cardsWidth);
-  	
-  	 if (document.getElementById('content').outerText !== "" && 
-  	 document.getElementById('content').children[0].dataset.id.length === 4) {
-	  	//pgload
-	  	insertGreeding.hidden = false;
-	    //arrows
-	 
-	    prev = document.querySelector("button#prev"),
-		next = document.querySelector("button#next"),
-	    cardsNum < 6 ? closCarousel237.showHideArrows('next',true) : closCarousel237.showHideArrows('next',false);
-  	}
-  }
-  
-  // total offers in cards
-  const doCardUpdates = {
-  	init: () => {
-  		cardsBeenAdded();
-  		//insertGreeding.hidden = false;
-  	}
-  }
-  
-  //check num of cards
-  new ResizeObserver(doCardUpdates.init).observe(xcards) 
-  
   //card-close event
-  window.addEventListener('click', function(e) {
-    if (document.querySelector('#main-wrapper--exp237 #content') && 
-      (e.target.classList.contains('close-card'))) {
-          e.preventDefault();
-          times++;
-          let el = e.toElement.parentElement;
-          if (times === 1 ) {
-            el.parentElement.removeChild(el)
-            times = 0;
-          } 
+  window.addEventListener("click", function (e) {
+    if (
+      document.querySelector("#main-wrapper--exp237 #content") &&
+      e.target.classList.contains("close-card")
+    ) {
+      e.preventDefault();
+      times++;
+      let el = e.toElement.parentElement;
+      if (times === 1) {
+        el.parentElement.removeChild(el);
+        times = 0;
       }
+    }
   });
   
- 
+  
+  function cardsBeenAdded() {
+    let cardsWidth = xcards.offsetWidth;
+    let carcontainer = document.getElementById('carousel--container');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+    cardsNum = Math.round(cardsWidth / 300);
+    console.log("resizedObserver - cards before: ", cardsNum, cardsWidth);
+    
+    /*
+    safety feature: 
+    --------------
+    if btn>left && btn>right => hidden then enable scrollBehaviour.
+    
+    */
+    
+    if(next.hidden === true && prev.hidden === true) {
+    	carcontainer.classList.remove('noflow');
+    }
+    /*
+      arrows re-enabled by scrolled then back to designed behaviour
+      while screen size greater than 1024
+    */
+    else if( window.screen.width > 1024 && next.hidden === false || prev.hidden === false) {
+    	carcontainer.classList.add('noflow')
+    }
+    
+
+    if (
+      document.getElementById("content").outerText !== "" &&
+      document.getElementById("content").children[0].dataset.id.length === 4
+    ) {
+      //pgload
+      insertGreeding.hidden = false;
+      //arrows
+      prev = document.querySelector("button#prev");
+      next = document.querySelector("button#next");
+      cardsNum < 4
+        ? closCarousel237.showHideArrows("next", true)
+        : closCarousel237.showHideArrows("prev", true);
+        
+      cardsNum >= 4
+        ? closCarousel237.showHideArrows("next", false)
+        : closCarousel237.showHideArrows("prev", true);
+       
+    }
+    //remove greeding
+    if (cardsNum === 0) {
+      insertGreeding.hidden = true;
+      closCarousel237.showHideArrows("next", true);
+      closCarousel237.showHideArrows("prev", true);
+    }
+  }
+
+  // total offers in cards
+  const doCardUpdates = {
+    init: () => {
+      cardsBeenAdded();
+    },
+  };
+
+  //check num of cards
+  new ResizeObserver(doCardUpdates.init).observe(xcards);
+
+
   try {
-    let options = sparksOptions, cstorage,coptions;
-    console.log('sparksOptions ', options);
+    let options = sparksOptions,
+      cstorage,
+      coptions;
+    console.log("sparksOptions ", options);
+    
+   
 
     const checkOptions = () => {
         return options &&
@@ -748,23 +887,31 @@ window.addEventListener("load", function () { // load page event
       },
       checkStorage = (label) => {
         return window.localStorage.getItem(label) === null
-          ? window.localStorage.setItem(
-              "sparkOptions",
-              JSON.stringify(label)
-            )
+          ? window.localStorage.setItem("sparkOptions", JSON.stringify(label))
           : false;
       };
-      checkStorage(sparksOptions);
-      checkOptions();
-      
-  
-      console.clear();
-      console.log(
-        `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
-      );
-    
+    checkStorage(sparksOptions);
+    checkOptions();
+
+    console.clear();
+    console.log(
+      `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
+    );
   } catch (err) {
     console.log("TRY again: " + err);
   }
-
+  
+  
+ 
+  
+  
+  
+  
 }); // load page event
+
+
+
+
+
+
+
