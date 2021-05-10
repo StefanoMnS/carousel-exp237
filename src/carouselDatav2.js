@@ -228,7 +228,7 @@ function externalScripts() {
           const crds = document.createElement('div')
           let cardsContent = ''
           for (let c = 0; c < cards.length; c++) {
-            cardsContent += '<div data-target="card" data-id="' + cards[c].id + '" class="item ' + cards[c].className + '">'
+            cardsContent += '<div data-id="' + cards[c].id + '" class="item ' + cards[c].className + '">'
             cardsContent +=
               '<img class="card-logo" style="mix-blend-mode:' + cards[c].inline + '" width="' +
               parseInt(cards[c].width) +
