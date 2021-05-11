@@ -12,18 +12,17 @@ function externalScripts() {
   }
   externalScripts()
   
-  
+
   var carouselData = (function () {
-      let sparkOptionsComplete = {};
       const  getSparks = () => {
         let optns = JSON.parse(localStorage.getItem('sparkOptionsComplete'));
         console.log('sparkOptionsComplete', optns);
-        return optns;
+        return optns || 0;
       }
       
       return {
         init: function () {
-          sparkOptionsComplete = getSparks();
+          this.sparkOptionsComplete = getSparks();
           this.doCards();
         },
        
@@ -38,8 +37,8 @@ function externalScripts() {
             closeEle: 'X',
             footer: 'New Sparks offers waiting for you 1',
             image: 'https://donpio.tech/repositories/mtest/images/Card_NEW.png',
-            width: 246,
-            height: 150,
+            width: 164,
+            height: 110,
             showNotification: true,
             tcards:0,
             emjIcon: true,
@@ -227,8 +226,8 @@ function externalScripts() {
         addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
     
         compileCards: function (cards) {
-  
-          let isNotif = sparkOptionsComplete.totalOffers;
+          let isNotif = this.sparkOptionsComplete.totalOffers;
+         
           const crds = document.createElement('div')
           let cardsContent = ''
           for (let c = 0; c < cards.length; c++) {
@@ -251,7 +250,7 @@ function externalScripts() {
   
             cardsContent += `<p class="heading">${cards[c].footer}`;
             
-            cardsContent += cards[c].emjIcon ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti2.png" />' : '<img src=""/>';
+            cardsContent += cards[c].emjIcon ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti.png" />' : '<img src=""/>';
   
             cardsContent += '</p>';
             

@@ -1,3 +1,5 @@
+
+
 function externalScripts() {
   ["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"].forEach(
     function (src) {
@@ -27,7 +29,10 @@ var closCarousel237 = (function () {
   };
 
   const mainStyles = `
-  .main-wrapper--exp237 {
+  
+  .below-header img {display: none !important;}
+  
+    .main-wrapper--exp237 {
     margin: 0;
     box-sizing: border-box;
     display: flex;
@@ -66,15 +71,7 @@ var closCarousel237 = (function () {
 		overflow: hidden;
 	}
 	
-	@keyframes fader {
-	    from {
-	        opacity: 0.5;
-	        transform: translateX(10%) 
-	   }
-	    to {
-	        opacity: 1;
-	   }
-	}
+
 	#main-wrapper--exp237 #carousel--wrapper {
 	    width: 100%;
 	    margin: 0;
@@ -101,14 +98,14 @@ var closCarousel237 = (function () {
 	    cursor: pointer;
 	    transform: scaleX(1.4) translate(-9px, -22px);
 	}
-	#main-wrapper--exp237 .account--holder__greet {
+	.account--holder__greet {
 	    height: 40px;
 	    display: flex;
 	    flex-direction: column;
 	    justify-content: flex-start;
 	    width: 100%;
 	}
-	#main-wrapper--exp237 .account--holder__greet p {
+	.account--holder__greet p {
 	    margin: 0;
 	    font-weight: normal;
 	    line-height: 40px;
@@ -128,16 +125,16 @@ var closCarousel237 = (function () {
 	#main-wrapper--exp237 .item.hidden {
 	    display: none;
 	}
-	#main-wrapper--exp237 .item img.card-logo {
+	#main-wrapper--exp237 img.card-logo {
 	    transition: display .45s linear 25ms;
 	    height: auto !important;
 	    width: 100%;
 	    padding: 0;
 	    position: relative;
-	    max-width: 112px;
+	    max-width: 144px;
 	    transform: rotate(360deg);
 	}
-	#main-wrapper--exp237 .item .heading {
+	#main-wrapper--exp237 .heading {
 	    letter-spacing: 0;
 	    color: #000000;
 	    font-family: 'MS London eText Semibold';
@@ -147,21 +144,23 @@ var closCarousel237 = (function () {
 	    margin: 0;
 	    width: 160px;
 	    font-size: 14px;
-	    margin-left: -70px;
+	    margin-left: -40px;
+	    padding-right: 15px;
 	    
 	}
 	
 	#main-wrapper--exp237 img.card-confetti {
-	    width: 20px;
-	    height: 20px;
-	    transform: translate(-40px, 20px);
+	    width: 22px;
+	    height: 23px;
+	    transform: translateX(-28px);
 	    object-fit: contain;
-	    align-self: auto;
+	    align-self: flex-end;
+	    background-color: #ffffff;
 	}
 	
-	.item .heading img.card-confetti::before {
-	    width: 20px;
-	    height: 20px;
+	.heading img.card-confetti::after {
+	    width: 22px;
+	    height: 22px;
 	    display: inline-block;
 	    object-fit: contain;
 	    align-self: flex-end;
@@ -170,10 +169,10 @@ var closCarousel237 = (function () {
 	    #main-wrapper--exp237 .carousel--dot span {
 	        display: none;
 	   }
-	    button#prev, button#next {
+	    #prev, button#next {
 	        display: none;
 	   }
-	    button#prev.hidden, button#next.hidden {
+	    #prev.hidden, button#next.hidden {
 	        display: none;
 	   }
 	}
@@ -187,28 +186,8 @@ var closCarousel237 = (function () {
 	    margin: 0;
 	    margin-left: 6.50vw;
 	}
-	.carousel__wrapper.hidden {
-	    visibility: hidden;
-	}
-	.carousel__wrapper {
-	    transition: all 0.45s linear 150ms;
-	    width: 100%;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-	    background-color: #f2f2f2;
-	    position: relative;
-	}
-	.main-wrapper--exp236 {
-	    margin: 0;
-	    display: flex;
-	    justify-content: center;
-	    align-items: center;
-	    flex-direction: column;
-	    height: 170px;
-	    background-color: #F1EDEC;
-	    width: 100%;
-	}
+
+
 	#carousel--wrapper {
 	    width: 90%;
 	    margin-left: 10%;
@@ -247,8 +226,8 @@ var closCarousel237 = (function () {
 	    line-height: 20px;
 	    text-align: center;
 	    font-size: 12px;
-	    top: 0px;
-	    right: 29px;
+	    top: -2px;
+	    right: 17px;
 	   
 	}
 	@media only screen and (min-width: 1025px) {
@@ -263,7 +242,7 @@ var closCarousel237 = (function () {
 	    #main-wrapper--exp237 .carousel--dot span {
 	        display: none;
 	   }
-	    #main-wrapper--exp237 #carousel--wrapper button#prev:focus,#carousel--wrapper button#next:focus {
+	    #main-wrapper--exp237 #carousel--wrapper #prev:focus,#carousel--wrapper #next:focus {
 	        outline: none;
 	        box-shadow: none;
 	   }
@@ -305,12 +284,12 @@ var closCarousel237 = (function () {
 	        transform: translate(-50%, -50%);
 	        background-color: initial; 
 	   }
-	    #main-wrapper--exp237 .account--holder__greet {
+	    .account--holder__greet {
 	        display: flex;
 	        margin-left: 0;
 	        justify-content: flex-start;
 	   }
-	    #main-wrapper--exp237 .account--holder__greet p {
+	    .account--holder__greet p {
 	        margin: 0;
 		    padding: 0 5px;
 		    font-weight: 600;
@@ -334,6 +313,218 @@ var closCarousel237 = (function () {
 	    99% { transform:translateY(-3%); }
 	    100% { transform:translateY(0); }
 	}
+
+	
+	
+	
+	/* mobile */
+	@media only screen and (min-device-width: 375px) and (max-device-height: 823px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2) {
+	
+		.main-wrapper--exp237 {
+		    margin: 0;
+		    box-sizing: border-box;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    overflow-y: auto;
+		    flex-direction: column;
+		    height: 170px;
+		    background-color: #F1EDEC;
+		    width: 100%;
+		}
+			#main-wrapper--exp237 {
+			    box-sizing: border-box;
+			    background-color: transparent;
+			    width: 100%;
+			    max-width: 1280px;
+			    height: 100%;
+			    margin: 0 auto;
+			    flex-direction: column;
+			    display: flex;
+			    justify-content: space-around;
+			}
+			#main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
+			    display: none;
+			    height: 0;
+			}
+			#carousel--container {
+			    margin: 0;
+			    display: flex;
+			    flex-direction: column;
+			    width: 100%;
+			    overflow-y: scroll;
+			}
+			
+			#carousel--container.noflow {
+				overflow: hidden;
+			}
+			
+		
+			#main-wrapper--exp237 #carousel--wrapper {
+			    width: 100%;
+			    margin: 0;
+			    padding: 0 1rem;
+			    display: flex;
+			    flex-wrap: wrap;
+			}
+			
+			#main-wrapper--exp237 #content {
+			    display: grid;
+			    grid-gap: 16px;
+			    grid-auto-flow: column;
+			    margin: auto;
+			    box-sizing: border-box;
+			    position: relative;
+			}
+			.item span.close-card {
+			    transition: all .75s linear 250ms;
+			    color: inherit;
+			    font-weight: 300;
+			    display: flex;
+			    height: auto;
+			    opacity: 1;
+			    cursor: pointer;
+			    transform: scaleX(1.4) translate(-9px, -22px);
+			}
+			.account--holder__greet {
+			    height: 40px;
+			    display: flex;
+			    flex-direction: column;
+			    justify-content: flex-start;
+			    width: 100%;
+			}
+			.account--holder__greet p {
+			    margin: 0;
+			    font-weight: normal;
+			    line-height: 40px;
+			}
+			#main-wrapper--exp237 .item {
+			    border-radius: 8px;
+			    height: 78px;
+			    width: 300px;
+			    background: #fff;
+			    border: 1px solid #d9d9d9;
+			    display: flex;
+			    flex-direction: row;
+			    justify-content: space-between;
+			    align-items: center;
+			    flex-wrap: nowrap;
+			}
+			#main-wrapper--exp237 .item.hidden {
+			    display: none;
+			}
+			
+			
+			#main-wrapper--exp237 img.card-logo {
+			    transition: display .45s linear 25ms;
+			    width: 100%;
+			    padding: 0;
+			    height: auto;
+			    position: relative;
+			    max-width: 144px;
+			    transform: rotate(360deg);
+			}
+			
+			#main-wrapper--exp237 .item .heading {
+			    letter-spacing: 0;
+			    color: #000000;
+			    font-family: 'MS London eText Semibold';
+			    text-align: left;
+			    display: flex;
+			    line-height: 20px;
+			    margin: 0;
+			    width: 160px;
+			    font-size: 14px;
+			    margin-left: -40px;
+			    
+			}
+			
+			#main-wrapper--exp237 img.card-confetti {
+			    width: 20px;
+			    height: 20px;
+			    transform: translate(-40px, 20px);
+			    object-fit: contain;
+			    align-self: auto;
+			}
+			
+			.item img.card-confetti::before {
+			    width: 20px;
+			    height: 20px;
+			    display: inline-block;
+			    object-fit: contain;
+			    align-self: flex-end;
+			}
+			
+			 #main-wrapper--exp237 .carousel--dot span {
+	        display: none;
+	   }
+	    #prev, button#next {
+	        display: none;
+	   }
+	    #prev.hidden, button#next.hidden {
+	        display: none;
+	   }
+	}
+	
+	
+	
+	
+	.welcome--message {
+	    width: 100%;
+	    display: flex;
+	    margin: 0.3rem 0 0 0;
+	    justify-content: flex-start;
+	}
+	.welcome--message p {
+	    margin: 0;
+	    margin-left: 6.50vw;
+	}
+
+
+	#carousel--wrapper {
+	    width: 90%;
+	    margin-left: 10%;
+	    position: relative;
+	    padding-top: 60px;
+	    padding-bottom: 33px;
+	    background: #F1EDEC;
+	}
+	#carousel--container {
+	    height: 78px;
+	    margin: 0;
+	    scroll-behavior: smooth;
+	    margin: 0;
+	    -ms-overflow-style: none;
+	   /* IE and Edge */
+	    scrollbar-width: none;
+	   /* Firefox */
+	}
+	
+	
+
+	.card-notification__wrapper {
+	    position: relative;
+	    top: -30px;
+	    left: -24px;
+	    background: rgba(255,255,255,.35);
+	}
+
+	
+	
+	
+	
+	
+	
+	}
+		  
+		  
+		  
+	  
+	  
+	  
+	
+	
+	
 
   `;
 
@@ -411,8 +602,8 @@ var closCarousel237 = (function () {
         bounding.left >= -myElementWidth &&
         bounding.right <=
           (window.innerWidth || document.documentElement.clientWidth) +
-            myElementWidth &&
-        bounding.bottom <=
+            myElementWidth  &&
+        bounding.bottom  <=
           (window.innerHeight || document.documentElement.clientHeight) +
             myElementHeight
       ) {
@@ -581,8 +772,8 @@ window.addEventListener("resize", () => {
 	    "#main-wrapper--exp237 #carousel--container"
 	  );
 	  let carousel = document.querySelector('#carousel--container');
-	  const prev = document.querySelector("button#prev");
-	  const next = document.querySelector("button#next");
+	  const prev = document.querySelector("#prev");
+	  const next = document.querySelector("#next");
 	  const carslides = document.querySelectorAll(
 	    "#main-wrapper--exp237 #content .item"
 	  );
@@ -591,12 +782,8 @@ window.addEventListener("resize", () => {
 	  if(window.screen.width <= 1024) {
 		[prev, next].forEach((itm) => (itm.hidden = true));
 	  }
-	  // update next arrow within fn
-	  closCarousel237.doCarouselSecondAct();
-	 
-	  
-	 
-	  
+	
+	
 	  function cardsBeenAdded() {
 	    let cardsWidth = xcards.offsetWidth;
 	    let carcontainer = document.getElementById('carousel--container');
@@ -607,6 +794,8 @@ window.addEventListener("resize", () => {
 	    console.log("resizedObserver - cards before: ", cardsNum, cardsWidth);
 	    console.log('screen-size ', window.screen.width);
 	    console.log('num of cards ', cardsNum);
+	    // resized num cards
+	    closCarousel237.doCarouselSecondAct();
 	  
 	    
 	    // safety
@@ -642,9 +831,12 @@ window.addEventListener("resize", () => {
 	    	closCarousel237.showHideArrows("next", false);
 	    }
 	    
+	   
+        
 	    
 	    
-	  }
+	    
+   }//fn
 	
 	  // total offers in cards
 	  const doCardUpdates = {
@@ -773,7 +965,8 @@ window.addEventListener("load", function () {
     name: "sparksOptions",
     //fetch from session first
     allOffers: allSparks(),
-    //not in session call api -disabled below
+    
+    //call api when-disabled
     allFetchedSparks: fetchSparks(),
     // cookieName
     visitorName: getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
@@ -815,56 +1008,51 @@ window.addEventListener("load", function () {
     console.log("resizedObserver - cards before: ", cardsNum, cardsWidth);
     
     /*
-    safety feature: 
-    --------------
-    if btn>left && btn>right => hidden then enable scrollBehaviour.
-    
+      safety feature: 
+      --------------
+      Remove noflow when both arrows hidden at-least 4-cards
+      add-back when > 1024 with next -on
     */
     
-    if(next.hidden === true && prev.hidden === true) {
+    if(next.hidden === true && prev.hidden === true && cardsNum >= 4) {
     	carcontainer.classList.remove('noflow');
-    }
-    /*
-      arrows re-enabled by scrolled then back to designed behaviour
-      while screen size greater than 1024
-    */
-    else if( window.screen.width > 1024 && next.hidden === false || prev.hidden === false) {
-    	carcontainer.classList.add('noflow')
-    }
+    	
+      if( window.screen.width > 1024) {
+    	 carcontainer.classList.add('noflow');
+    	 next.hidden = false;
+      }
+      
+    }//if
+   
     
 
     if (
       document.getElementById("content").outerText !== "" &&
       document.getElementById("content").children[0].dataset.id.length === 4
-    ) {
-      //pgload
-      insertGreeding.hidden = false;
-      //arrows
-      prev = document.querySelector("button#prev");
-      next = document.querySelector("button#next");
-      cardsNum < 4
-        ? closCarousel237.showHideArrows("next", true)
-        : closCarousel237.showHideArrows("prev", true);
-        
-      cardsNum >= 4
-        ? closCarousel237.showHideArrows("next", false)
-        : closCarousel237.showHideArrows("prev", true);
-       
+    ) 
+     
+    {
+	      //pgload
+	      insertGreeding.hidden = false;
+	      if (cardsNum < 4 ) {
+	      	next.hidden = true, prev.hidden = true;
+	      }
+    	 //remove greeding	
+	     if(cardsNum === 0) {
+	     	insertGreeding.hidden = true;
+	     	next.hidden = true, prev.hidden = true;
+	     }
     }
-    //remove greeding
-    if (cardsNum === 0) {
-      insertGreeding.hidden = true;
-      closCarousel237.showHideArrows("next", true);
-      closCarousel237.showHideArrows("prev", true);
-    }
-  }
+		  
+  }//cardsBeenAdded fn
 
-  // total offers in cards
-  const doCardUpdates = {
-    init: () => {
-      cardsBeenAdded();
-    },
-  };
+
+    //total offers in cards
+    const doCardUpdates = {
+      init: () => {
+        cardsBeenAdded();
+      },
+    };
 
   //check num of cards
   new ResizeObserver(doCardUpdates.init).observe(xcards);
@@ -895,7 +1083,7 @@ window.addEventListener("load", function () {
 
     console.clear();
     console.log(
-      `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. \n\n DONE! `
+      `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. Fetched disabled  \n\n DONE! `
     );
   } catch (err) {
     console.log("TRY again: " + err);
@@ -913,5 +1101,14 @@ window.addEventListener("load", function () {
 
 
 
+/*
+
+  Add cookie or user needs to be login to show gretting person name
+  loyalty-service API needs to play ball for circle with num of sparks to show
+  
+   
+  Add emoji confetti per card
+
+*/
 
 
