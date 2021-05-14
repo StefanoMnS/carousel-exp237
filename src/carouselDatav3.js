@@ -239,7 +239,7 @@ function externalScripts() {
         addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
     
         compileCards: function (cards) {
-          let isNotif = this.sparkOptionsComplete.totalOffers;
+          let isNotif = this.sparkOptionsComplete.offersBreakdown.totalOffers;
          
           const crds = document.createElement('div')
           let cardsContent = ''
@@ -252,14 +252,6 @@ function externalScripts() {
               parseInt(cards[c].height) +
               '" src="' + cards[c].image   + 
               '"/>';
-
-              // cardsContent +=
-              // '<img data-image="target-mobile" style="" class="card-logo--mobile"  width="' +
-              // parseInt(cards[c].width) +
-              // '" height="' +
-              // parseInt(cards[c].height) +
-              // '" src="' + cards[c].image_mob   + 
-              // '"/>';
             
               cardsContent += `<div class="card-notification__wrapper">`;
               cardsContent += 
@@ -278,6 +270,9 @@ function externalScripts() {
           }
   
           crds.innerHTML = cardsContent
+
+
+
           return crds;
   
         },
@@ -331,4 +326,4 @@ function externalScripts() {
   
   
     
-    
+  
