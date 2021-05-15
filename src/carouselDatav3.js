@@ -239,7 +239,8 @@ function externalScripts() {
         addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
     
         compileCards: function (cards) {
-          let isNotif = this.sparkOptionsComplete.offersBreakdown.totalOffers;
+          //let isNotif = this.sparkOptionsComplete.totalOffers;
+          let isNotif; 
          
           const crds = document.createElement('div')
           let cardsContent = ''

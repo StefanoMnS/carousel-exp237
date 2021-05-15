@@ -32,6 +32,10 @@ function externalScripts() {
   
 	const mainStyles = `
 	
+	* {
+		box-sizing: border-box;
+		scroll-behavior: smooth;
+	}
 	.below-header img {display: none !important;}
 	
 	  .main-wrapper--exp237 {
@@ -48,7 +52,6 @@ function externalScripts() {
 		  }
 		  
 	  #main-wrapper--exp237 {
-			  box-sizing: border-box;
 			  background-color: transparent;
 			  width: 100%;
 			  max-width: 1280px;
@@ -57,6 +60,7 @@ function externalScripts() {
 			  flex-direction: column;
 			  display: flex;
 			  justify-content: space-around;
+			  overflow-y: hidden;
 		  }
 		  
 	  #main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
@@ -610,6 +614,60 @@ function externalScripts() {
 		  
 		  window.screen.width > 1024 ? carousel.classList.add('noflow') : carousel.classList.remove('noflow');
 		  
+		  
+		  let start;
+			let change;
+			
+			
+			window.screen.width > 1024 ? carousel.classList.add('noflow') : carousel.classList.remove('noflow');
+  
+			carousel.addEventListener('dragstart', (e) => {
+				   console.log('drag ',e)
+				  start = e.clientX;
+			});
+  
+			carousel.addEventListener('dragover', (e) => {
+				 console.log('dragover ',e)
+				  e.preventDefault();
+				  let touch = e.clientX;
+				  change = start - touch;
+			  
+			});
+  
+			carousel.addEventListener('dragend', (e) => {
+				 console.log('dragend ',e)
+			  e.preventDefault();
+			  let touch = e.clientX;
+			  change = start - touch;
+		  
+		   });
+  
+		   carousel.addEventListener('touchstart', (e) => {
+				console.log('touchstart ',e)
+			  start = e.touches[0].clientX;
+		  
+		   });
+  
+			carousel.addEventListener('touchmove', (e) => {
+				 console.log('touchmove ',e)
+			  e.preventDefault();
+			  let touch = e.touches[0];
+			  change = start - touch.clientX;
+		  
+		   });
+  
+		   carousel.addEventListener('touchend', touchShow );
+		   
+			function touchShow() {
+				 console.log('touchend show')
+				if(change > 0) {
+					content.scrollLeft += width;
+				}else {
+					content.scrollLeft -= width;
+				}
+			}
+			
+		  
 		  next.addEventListener("click", (e) => {
 			  e.preventDefault();
 			  carousel.scrollBy(+width + gap, 0);
@@ -717,127 +775,79 @@ function externalScripts() {
   })();
   
   
-  // window.addEventListener("resize", () => {
+  window.addEventListener("resize", () => {
+	  // carousel cards updated
+	  let xcards = document.querySelector("#main-wrapper--exp237 #content");
+	  let fi;
+	  let carousel = document.querySelector('#carousel--container');
+	  const carslides = document.querySelectorAll(
+		  "#main-wrapper--exp237 #content .item"
+	  );
+	  
+	  // set both arrows to none
+	  if (window.screen.width <= 1024) {
+		  [prev, next].forEach((itm) => (itm.hidden = true));
+	  }
   
-  // 	// carousel cards updated
-  // 	let xcards = document.querySelector("#main-wrapper--exp237 #content");
-  // 	let cardsNum = 0;
-  // 	let fi;
+	  function cardsBeenAdded() {
+		  let cardsWidth = xcards.offsetWidth;
+		  let dashboard =  document.querySelector('.main-wrapper--exp237');
+		  let carcontainer = document.getElementById('carousel--container');
+		  let content = document.getElementById('content');
+		  let next = document.getElementById('next');
+		  let prev = document.getElementById('prev');
+		  cardsNum = Math.round(cardsWidth / 300);
 	  
-  // 	let insertGreeding = document.querySelector(".account--holder__greet p");
-  // 	let carousel = document.querySelector('#carousel--container');
-  // 	const prev = document.querySelector("#prev");
-  // 	const next = document.querySelector("#next");
-  // 	const carslides = document.querySelectorAll(
-  // 		"#main-wrapper--exp237 #content .item"
-  // 	);
-	  
-  // 	// set both arrows to none
-  // 	if (window.screen.width <= 1024) {
-  // 		insertGreeding.hidden = false;
-  // 		[prev, next].forEach((itm) => (itm.hidden = true));
-  // 	}
-  
-  // 	function cardsBeenAdded() {
-  // 		let cardsWidth = xcards.offsetWidth;
-  // 		let dashboard =  document.querySelector('.main-wrapper--exp237');
-  // 		let carcontainer = document.getElementById('carousel--container');
-  // 		let content = document.getElementById('content');
-  // 		let next = document.getElementById('next');
-  // 		let prev = document.getElementById('prev');
-  // 		cardsNum = Math.round(cardsWidth / 300);
-	  
-  // 		let visitor = JSON.parse(window.localStorage.getItem('sparkOptionsComplete'))
+		  console.log("resize called: resizedObserver - cards before: ", cardsNum, cardsWidth);
+		  console.log('num of cards ', cardsNum);
 		  
-  // 		//console.log("resizedObserver - cards before: ", cardsNum, cardsWidth);
-  // 		//console.log('screen-size ', window.screen.width);
-  // 		console.log('num of cards ', cardsNum);
+		  // resized num cards
+		  closCarousel237.doCarouselSecondAct();
 		  
-  // 		// resized num cards
-  // 		closCarousel237.doCarouselSecondAct();
-	  
-  // 		//debugger;
-  // 		if (cardsNum) {
+		  if (cardsNum) {
 			  
-  // 			//arrows
-  // 			if(window.screen.width > 1024) {
-  // 			    next.hidden = false;
-  // 				switch(cardsNum) {
-				  
-  // 					case 5: //pgload set
-						  
-  // 						closCarousel237.showHideArrows("next", false);
-  // 						closCarousel237.showHideArrows("prev", true);
-  // 						break;	
-						  
-  // 					case 4:
-  
-  // 						closCarousel237.showHideArrows("next", false);
-  // 						closCarousel237.showHideArrows("prev", true);
-				  
-  // 						break;
-						  
-  // 					case 3:
-					  
-  // 						carcontainer.classList.remove('noflow');
-  // 						closCarousel237.showHideArrows("next", true);
-  // 						closCarousel237.showHideArrows("prev", true);
-						  
-  // 						break;
-						  
-  // 					case 2:
-  // 						dashboard.hidden = false;
-  // 						carcontainer.classList.remove('noflow');
-  // 						closCarousel237.showHideArrows("next", true);
-  // 						closCarousel237.showHideArrows("prev", true);
-					  
-  // 						break;
-						  
-  // 					case 1:
-  // 						dashboard.hidden = false;
-  // 						carcontainer.classList.remove('noflow');
-  // 						insertGreeding.hidden = false;
-  // 						closCarousel237.showHideArrows("next", true);
-  // 						closCarousel237.showHideArrows("prev", true);
-					  
-  // 						break;
-						  
-  // 					case 0:
-  // 						carcontainer.classList.remove('noflow');
-  // 						closCarousel237.showHideArrows("next", true);
-  // 						closCarousel237.showHideArrows("prev", true);
-  
-						  
-  // 						break;
-						  
-  // 					default:
-  // 						return;
-						  
-  // 				}//swt
-				  
-			  
-  // 				carcontainer.classList.add('noflow');
-  // 				content.children.scrollIntoView;
-				  
-  // 			}//if
+			  //arrows
+		  if(window.screen.width > 1024) {
 		  
-				  
-  // 		}
-  // 	}
+			  closCarousel237.showHideArrows("next", false);
+			  closCarousel237.showHideArrows("prev", true);
+			  carcontainer.classList.add('noflow');
+			  content.children.scrollIntoView;
+			  
+			  if (cardsNum < 4) {
+				  closCarousel237.showHideArrows("next", true);
+				  closCarousel237.showHideArrows("prev", true);
+			  }
+		  }//if
+			   
+		  if(window.screen.width < 1024) {
+			  carcontainer.classList.remove('noflow');
+			  closCarousel237.showHideArrows("next", true);
+			  closCarousel237.showHideArrows("prev", true);
+			  content.children.scrollIntoView;
+			  
+		  }
+			  
+		  }
+	  
+		  
+	  }
 	  
 	  
 	  
-  // 	// total offers in cards
-  // 	const doCardUpdates = {
-  // 		init: () => {
-  // 			cardsBeenAdded();
-  // 		},
-  // 	};
+	  // total offers in cards
+	  const doCardUpdates = {
+		  init: () => {
+			  cardsBeenAdded();
+		  },
+	  };
 	  
-  // 	//check num of cards
-  // 	new ResizeObserver(doCardUpdates.init).observe(xcards);
+	  //check num of cards
+	  new ResizeObserver(doCardUpdates.init).observe(xcards);
 	  
-  // }); // resize event
+  }); // resize event
+  
+  
   
   
   
@@ -846,12 +856,7 @@ function externalScripts() {
 	  // init activity
 	  closCarousel237.init();
 	  let times = 0;
-	  const prev = document.querySelector("#prev");
-	  const next = document.querySelector("#next");
 	  let spkObj; //called cardsBeenAdded
-	  
-	  
-	  
 	  
 	  // carousel cards updated
 	  let xcards = document.querySelector("#main-wrapper--exp237 #content");
@@ -872,7 +877,7 @@ function externalScripts() {
 	  };
 	  
 	  function getCookie(cname, nameOrValue = "cookieName") {
-		  //debugger;
+		  
 		  let nmval = nameOrValue;
 		  const name = cname + "=";
 		  const decodedCookie = decodeURIComponent(document.cookie);
@@ -894,14 +899,16 @@ function externalScripts() {
 	  
 	  function doGreet(obj) { 
 		  let visitor;
-		  let insertGreeding = document.querySelector(".account--holder__greet p");
-		  const {visitorName} = obj;
-		  if(visitorName) visitor = visitorName;
-		  let greet = document.getElementById("helloText") || "Hello ";
-		  
-		  obj.visitorGreet = greet;
-		  const visitNGreet = greet.trim() + " " + visitor;
-		  return visitNGreet;
+		  let visitNGreet;
+		  visitor = obj.visitorName;
+		  let greet = document.getElementById("helloText");
+		  if(greet) {
+			greet = greet.textContent;
+			visitNGreet = greet.trim() + " " + visitor;
+			return visitNGreet;
+		  }
+		  return "Hello";
+	
 	  }
 	  
   
@@ -910,14 +917,9 @@ function externalScripts() {
 		  let dashboard =  document.querySelector('.main-wrapper--exp237');
 		  let carcontainer = document.getElementById('carousel--container');
 		  let content = document.getElementById('content');
-		  let next = document.getElementById('next');
-		  let prev = document.getElementById('prev');
 		  let insertGreeding = document.querySelector(".account--holder__greet p");
 		  
-		  //insertGreeding.hidden = true;
-		  
 		  cardsNum = Math.round(cardsWidth / 300);
-		  let visitor;
 		  spkObj = JSON.parse(window.localStorage.getItem('sparkOptionsComplete'))
 		  visitor = spkObj.visitorName;
 		  
@@ -1044,7 +1046,7 @@ function externalScripts() {
 		
 		allOffers: allSparks(),
 		//call api when-disabled
-		//allFetchedSparks: fetchSparks(),
+		allFetchedSparks: fetchSparks(),
 		// cookieName
 		visitorName: getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
 		//cookieValue
