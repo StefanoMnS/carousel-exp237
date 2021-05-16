@@ -239,10 +239,9 @@ function externalScripts() {
         addIds: () =>  carouselData.sparkCards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000)),
     
         compileCards: function (cards) {
-          //let isNotif = this.sparkOptionsComplete.totalOffers;
-          let isNotif; 
+          let isNotif = (this.sparkOptionsComplete === 0) ? 10 : this.sparkOptionsComplete.totalOffers;
          
-          const crds = document.createElement('div')
+          const crds = document.createElement('div');
           let cardsContent = ''
           for (let c = 0; c < cards.length; c++) {
             cardsContent += '<div data-id="' + cards[c].id + '" class="item ' + cards[c].className + '">'
