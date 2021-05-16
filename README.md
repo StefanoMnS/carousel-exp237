@@ -1,34 +1,36 @@
 # Carousel-exp237
 
+Dashboard that can carousel multiple cards
 
-### dashboard that can carousel multiple cards
+# Exp-237 Carousel
+
+Made out of  **2 separate** Adobe Target Activities. One activity it's set-out to be the **cards container**, while the other **passes the cards** to the container.  
+
+It passes any number of cards, css classes to override existing styles, images, heading, footer and emoji using a Javascript Object.     
+It also fetches user's Spark cards while user is logged in, and adds number of total Offers to first card in carousel, but it can also be added to any other card in carousel. 
+
+## How-to-implement
+
+- Copy/paste `carouselRegularv4.js` using dev tools console to bring up an carousel's empty container
+- Copy/paste `carouselDatav3.js` using dev tools console to add-on the carousel's cards 
 
 
-#### Exp-237 Carousel
+## About experiment
 
-Made out of  2 or possibly 3 depending on what works out to be more of a user friendly approach.    
-One experiment to be a container for cards.    
-The other experiment to pass the cards.    
-Offers are out.         
-Separation of UI/ data - third party passing data. 
+### Targets these page(s):  
 
-ATM it passes data to Carousel injected from console via a self exec function/ slides object.
-Another does it all together
+DLP, PLP, PDP
 
-----
+### Functionality
 
-- Targets these page(s):  DLP, PLP, PDP
-- About experiment:
-
-   - Scrolls sideways, touch/drag under `1025px`, over it shows `left/right` arrows
-
-   - Shows right arrow, margin-left - check dots some of these things are linked to last one myb not needed hr 
-
-   - Needs to be a container for the homepage dashboard that can hold multiple cards - each card needs to have it's own rules/logic.
-
-   - No cards carousel container shown - Greeting  and username signed-in
-
-   - Card X close to remove individual messages - if all messages have been removed by a user, then dashboard should disappear  (checkout what messages these are)
+- Scrolls sideways over 1025px, touch/drag event under 1025px
+- X removes card from carousel
+- When no cards are left, container is removed
+- No arrows if number of cards width less than viewport width
+- No arrows under 1025px
+- Animation:        
+    •  Page load: it drops each card in sequence one after another       
+    •  Scroll left/right: upon reaching the end, card bounces (both scroll and touch events)
 
 
 - Assets:
@@ -38,21 +40,15 @@ Another does it all together
 
 <br /><br />
 
+:seedling:  [live demo](https://donpio.tech/repositories/mtest/updatecar.html)
+
+<br/>
+
 <kbd>Screenshot 1</kbd>
-![Carousel](./src/images/s1.png)
+![Carousel](./src/images/ssv3.png)
 
 <br />
-
-<kbd>Old design</kbd>
-![Carousel](./src/images/sc.png)
-
-
-#### live link
-
-!(demo)[https://donpio.tech/repositories/mtest/index.html]
-
-
-<br/><br/>
+<br/>
 
 
 
@@ -229,3 +225,18 @@ adobe.target.getOffers({
 
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
