@@ -266,7 +266,7 @@ function externalScripts() {
   
             cardsContent += '</p>';
             
-            cardsContent += `<span class="${cards[c].close}">${cards[c].closeEle}</span></div>`
+            cardsContent += `<span onclick="void(0)" class="${cards[c].close}">${cards[c].closeEle}</span></div>`
           }
   
           crds.innerHTML = cardsContent

@@ -7,3 +7,8 @@ workflows/
 bkupFiles/
 assets/
 .json
+
+needlook2.js
+needTolook.js
+pollForSparks.js
+testcar.html

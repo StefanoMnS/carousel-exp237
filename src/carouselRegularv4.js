@@ -1,3 +1,4 @@
+
 function externalScripts() {
 	["https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"].forEach(
 	  function (src) {
@@ -43,6 +44,7 @@ function externalScripts() {
 				height: 170px;
 				background-color: #f1edec;
 				width: 100%;
+				font-family: mns-london,Helvetica,Arial,sans-serif;
 			}
 			
 		#main-wrapper--exp237 {
@@ -102,6 +104,11 @@ function externalScripts() {
 				cursor: pointer;
 				transform: scaleX(1.4) translate(-9px, -22px);
 			}
+		
+		.item.closed {
+			display: none !important;
+		}
+
 			
 		.account--holder__greet {
 				height: 40px;
@@ -140,7 +147,7 @@ function externalScripts() {
 				width: 100%;
 				padding: 0;
 				position: relative;
-				max-width: 154px;
+				max-width: 117px;
 				transform: rotate(360deg);
 			}
 			
@@ -167,12 +174,14 @@ function externalScripts() {
 				background-color: #ffffff;
 			}
 			
-		.heading img.card-confetti::after {
+		.heading img.card-confetti::before {
 				width: 22px;
 				height: 22px;
 				display: inline-block;
 				object-fit: contain;
 				align-self: flex-end;
+				content: "\1F389";
+			
 		}
 			
 		.welcome--message {
@@ -463,6 +472,10 @@ function externalScripts() {
 					cursor: pointer;
 					transform: scaleX(1.4) translate(-9px, -22px);
 				}
+				
+				#main-wrapper--exp237.item.closed {
+				    display: none;
+				}
 				.account--holder__greet {
 					height: 40px;
 					display: flex;
@@ -633,6 +646,10 @@ function externalScripts() {
   
 		carousel.addEventListener("touchstart", (e) => {
 		  console.log("touchstart ", e);
+		  if (e.target.className === "close-card") {
+		      e.target.parentElement.classList.add('closed');
+		  }
+		  
 		  start = e.touches[0].clientX;
 		});
   
@@ -1015,23 +1032,17 @@ function externalScripts() {
 		closCarousel237.getBounds(lst);
 	  }
 	};
+	
+	window.addEventListener("click", function(e) {
+	    console.log(e.target,e);
+	    e.preventDefault();
+	    if(e.target.className === "close-card") {
+	        e.target.parentElement.classList.add("closed")
+	    }
+	    
+	})
   
-	//card-close event
-	window.addEventListener("click", function (e) {
-	  if (
-		document.querySelector("#main-wrapper--exp237 #content") &&
-		e.target.classList.contains("close-card")
-	  ) {
-		e.preventDefault();
-		times++;
-		let el = e.toElement.parentElement;
-		if (times === 1) {
-		  el.parentElement.removeChild(el);
-		  times = 0;
-		}
-	  }
-	});
-  
+
 	// total offers in cards
 	const doCardUpdates = {
 	  init: () => {
@@ -1065,4 +1076,44 @@ function externalScripts() {
 		
 		
 	*/
+  
+  
+  
+  
+  
+  function externalScripts() {
+    [
+      "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js",
+    
+    ].forEach(function(src) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+  });
+    
+  }
+  externalScripts()
+  
+
+
+    
+  
+   
+    
+  
+  
+    
+  
+    
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
   
