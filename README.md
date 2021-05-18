@@ -32,6 +32,9 @@ DLP, PLP, PDP
     •  Page load: it drops each card in sequence one after another       
     •  Scroll left/right: upon reaching the end, card bounces (both scroll and touch events)
 
+-`Drag/touch` and `snap` to edges in **mobile**
+-`Last/First` cards in a row **bounces** as it reaches **viewport's edge**
+
 
 - Assets:
    • Link to [fonts](https://marksandspencer.invisionapp.com/console/Dashboard-ckniwy5k402qu010l4zea617m/ckniwy7b602qy010lfhcrf0wj/inspect).
@@ -50,7 +53,8 @@ DLP, PLP, PDP
 <br />
 <br/>
 
-
+//
+ 
 
 
 
