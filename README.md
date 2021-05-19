@@ -1,5 +1,8 @@
 # Carousel-exp237
 
+[![GitHub Super-Linter](https://github.com/StefanoMnS/carousel-exp237/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/StefanoMnS/carousel-exp237.git)
+
 Dashboard that can carousel multiple cards
 
 # Exp-237 Carousel
