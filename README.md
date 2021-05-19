@@ -38,6 +38,10 @@ DLP, PLP, PDP
 -`Drag/touch` and `snap` to edges in **mobile**
 -`Last/First` cards in a row **bounces** as it reaches **viewport's edge**
 
+- `Generate` card `Id` from JS Obj key/val pairs
+
+
+
 
 - Assets:
    • Link to [fonts](https://marksandspencer.invisionapp.com/console/Dashboard-ckniwy5k402qu010l4zea617m/ckniwy7b602qy010lfhcrf0wj/inspect).

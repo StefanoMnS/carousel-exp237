@@ -1,3 +1,30 @@
+/*
+
+  Global
+  
+*/
+
+let cookieGood = (cname, nameOrValue = "cookieName") => {
+  let nmval = nameOrValue;
+  const name = cname + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1, c.length);
+    }
+    if (c.indexOf(name) === 0) {
+      const result = c.substring(name.length, c.length);
+      let cookieName = result.split(" ")[0];
+      let preval = result.split(" ")[1];
+      let cookieValue = preval.split("_")[1];
+      return nmval === "cookieName" ? cookieName : cookieValue;
+    }
+  }
+};
+
+cookieGood("MS_USER_COOKIE_10151", "cookieValue");
 
 var closCarousel237 = (function () {
   const getHandle = function () {
@@ -676,6 +703,7 @@ var closCarousel237 = (function () {
     },
 
     doCarouselSecondAct: function () {
+      if (!cookieGood("MS_USER_COOKIE_10151", "cookieValue")) return;
       const gap = 16;
       const carousel = document.getElementById("carousel--container");
       let width = carousel.offsetWidth;
@@ -829,14 +857,17 @@ var closCarousel237 = (function () {
 
       // makes sure not there already
       this.removeXhandle(".main-wrapper-exp237");
+
       this.removeSiteStripe();
       // already exist
       if (document.querySelector(".main-wrapper--exp237")) {
         let ele = document.querySelector(".main-wrapper--exp237");
         ele.parentElement.removeChild(ele);
       }
-      // then add.
-      cat.parentElement.insertBefore(carsl, cat);
+      if (cookieGood("MS_USER_COOKIE_10151", "cookieValue")) {
+        // then add.
+        cat.parentElement.insertBefore(carsl, cat);
+      } else return;
     },
     removeSiteStripe: function () {
       if (document.querySelector(".page__site-stripe")) {
@@ -850,15 +881,15 @@ var closCarousel237 = (function () {
 window.addEventListener("resize", () => {
   // carousel cards updated
   let xcards = document.querySelector("#main-wrapper--exp237 #content");
-  let vcards = document.querySelector('.main-wrapper--exp237');
+  let vcards = document.querySelector(".main-wrapper--exp237");
   // set both arrows to none
   if (window.screen.width <= 1024) {
     [prev, next].forEach((itm) => (itm.hidden = true));
   }
-  let tc=0;
-  
+  let tc = 0;
+
   //opens up container
-  
+
   vcards.scrollTop;
   vcards.scrollIntoView;
   vcards.style.display = "flex";
@@ -869,40 +900,47 @@ window.addEventListener("resize", () => {
     let content = document.getElementById("content");
     cardsNum = Math.round(cardsWidth / 300);
     let totalCards = content.children.length;
-    
-    Array.from(content.children).forEach(itm => {
-    	if(itm.className === "item closed") {
-    		tc--
-    	} else if(itm.className === "item") {
-    		tc++
-    	}
-    	
-    	if(tc === 1) {
-    		insertGreeding.hidden = true;
-    		dashboard.style.display = "none";
-    	}
-    	return tc;
-    })
+
+    Array.from(content.children).forEach((itm) => {
+      if (itm.className === "item closed") {
+        tc--;
+      } else if (itm.className === "item") {
+        tc++;
+      }
+
+      if (tc === 1) {
+        insertGreeding.hidden = true;
+        dashboard.style.display = "none";
+      }
+      return tc;
+    });
 
     console.log(
-      "resize called: resizedObserver - cards before: ", cardsNum,
-      ' what is xcards ',xcards, ' total num of cards ',totalCards,
-      'container width => ', cardsWidth, ' total num of cards => ',tc
+      "resize called: resizedObserver - cards before: ",
+      cardsNum,
+      " what is xcards ",
+      xcards,
+      " total num of cards ",
+      totalCards,
+      "container width => ",
+      cardsWidth,
+      " total num of cards => ",
+      tc
     );
 
     // resized num cards
     closCarousel237.doCarouselSecondAct();
 
-  
-    if (cardsNum) {//resize arrows
+    if (cardsNum) {
+      //resize arrows
       //arrows
       if (window.screen.width > 1024) {
         closCarousel237.showHideArrows("next", false);
         closCarousel237.showHideArrows("prev", true);
         carcontainer.classList.add("noflow");
         content.children.scrollIntoView;
-        
-        if (cardsNum ===0) {
+
+        if (cardsNum === 0) {
           carcontainer.parentElement.removeChild(carcontainer);
         }
 
@@ -910,18 +948,18 @@ window.addEventListener("resize", () => {
           closCarousel237.showHideArrows("next", true);
           closCarousel237.showHideArrows("prev", true);
         }
-      }//if
+      } //if
 
       if (window.screen.width < 1024) {
         carcontainer.classList.remove("noflow");
         closCarousel237.showHideArrows("next", true);
         closCarousel237.showHideArrows("prev", true);
         content.children.scrollIntoView;
-        
-        if (cardsNum ===0) {
+
+        if (cardsNum === 0) {
           carcontainer.parentElement.removeChild(carcontainer);
         }
-        
+
         if (cardsNum < 4) {
           carcontainer.classList.remove("noflow");
           closCarousel237.showHideArrows("next", true);
@@ -938,10 +976,7 @@ window.addEventListener("resize", () => {
     },
   };
 
-  
   new ResizeObserver(doCardUpdates.init).observe(xcards);
-  
-  
 }); // resize event
 
 window.addEventListener("load", function () {
@@ -949,9 +984,10 @@ window.addEventListener("load", function () {
 
   closCarousel237.init();
 
-  let times = 0, tc = 0, ct=0;
+  let times = 0,
+    tc = 0,
+    ct = 0;
   let spkObj; //called cardsBeenAdded
-  
 
   // carousel cards updated
   let xcards = document.querySelector("#main-wrapper--exp237 #content");
@@ -1008,18 +1044,18 @@ window.addEventListener("load", function () {
   }
 
   function cardsBeenAdded() {
-  	tc = 0;
+    tc = 0;
     let cardsWidth = xcards.offsetWidth;
     let dashboard = document.querySelector(".main-wrapper--exp237");
     let carcontainer = document.getElementById("carousel--container");
     let content = document.getElementById("content");
     let totcards = content.children.length;
     let insertGreeding = document.querySelector(".account--holder__greet p");
-    let container = document.querySelector('.main-wrapper--exp237');
-    
+    let container = document.querySelector(".main-wrapper--exp237");
+
     spkObj = JSON.parse(window.localStorage.getItem("sparkOptionsComplete"));
     visitor = spkObj === null ? "Default" : spkObj.visitorName;
-    
+
     // Array.from(content.children).forEach(itm => {
     // 	if(itm.className === "item closed") {
     // 		tc--
@@ -1045,7 +1081,6 @@ window.addEventListener("load", function () {
     if (totcards) {
       //arrows
       if (window.screen.width > 1024) {
-      
         insertGreeding.textContent = doGreet(spkObj);
 
         closCarousel237.showHideArrows("next", false);
@@ -1084,9 +1119,9 @@ window.addEventListener("load", function () {
   }
 
   function fetchSparks() {
-    
     let url =
       "https://api.loyalty.marksandspencer.services/loyalty-service/api/aggregatedetails/user/v2";
+
     let cookieValue = getCookie("MS_USER_COOKIE_10151", "cookieValue");
 
     let composed =
@@ -1120,9 +1155,8 @@ window.addEventListener("load", function () {
   const sparksOptions = {
     allOffers: allSparks(),
     //call api when-disabled
-    allFetchedSparks:
-      fetchSparks(),
-    
+    allFetchedSparks: fetchSparks(),
+
     // cookieName
     visitorName: getCookie("MS_USER_COOKIE_10151", "cookieName") || "",
     //cookieValue
@@ -1135,259 +1169,267 @@ window.addEventListener("load", function () {
     },
   };
 
-  const dobounce = () => {
-    if (document.querySelector("#content")) {
-      let lst = document.querySelector("#content").children.lastElementChild;
-      closCarousel237.getBounds(lst);
-    }
-  };
-  
-  
-  window.addEventListener("click", function (e) {
-  	e.preventDefault(); //cars slides 
-  	console.log('ct is ',ct)
-      let ele = e.target.parentElement;
-          cont = document.getElementById('content').children;
-    if (e.target.className === "close-card" && ct <= 1) {//pushng mob evts
-      Array.from(cont).map(itm=> // match data-id, add remove
-    	 ele.dataset.id === itm.dataset.id 
-    		? ele.classList.add('removed') : false);
-      ct++;
-      return
-    	
-    }
-    
-    
-    
-    
-  },false);
-  
-   //bring first slide into view
-  if (document.querySelector("#main-wrapper--exp237 .item") !== null) {
-    let fist = document.querySelector("#main-wrapper--exp237 .item");
-    fist.scrollIntoView();
-  }
-  
-  
-  
+  window.addEventListener(
+    "click",
+    function (e) {
+      let d1 =
+        doCardUpdates.regClk !== 0
+          ? doCardUpdates.regClk
+          : Math.round(e.timeStamp);
 
-  // total offers in cards
+      e.preventDefault(); //slides
+      let ele = e.target.parentElement;
+      cont = document.getElementById("content").children;
+      d2 = new Date().getTime();
+      d2 = Number(d2.toString().slice(0, 5));
+      console.log("d2", d2 - d1, " d1");
+      if (e.target.className === "close-card" && Math.abs(d1 - d2) > 3000) {
+        //pushng mob evts
+        doCardUpdates.regClk = 0;
+        Array.from(cont).map(
+          (
+            itm // match data-id, add remove
+          ) =>
+            ele.dataset.id === itm.dataset.id
+              ? ele.classList.add("removed")
+              : false
+        );
+        return;
+      }
+    },
+    false
+  ); // event click;
+
+  //init scroll-into-view
+  const scrollIntoView = () => {
+    return `document.querySelector("#main-wrapper--exp237 .item") !== null)
+  		? document.querySelector("#main-wrapper--exp237 .item").scrollIntoView
+  		: return`;
+  };
+
+  // apply-card-changes
   const doCardUpdates = {
     init: () => {
       cardsBeenAdded();
+      scrollIntoView();
     },
-    boundInit: () => {
-      dobounce();
-    },
+    regClk: 0,
   };
 
- 
-
-  //check num of cards
+  //react-to-card-changes
   setTimeout(() => {
-  	new ResizeObserver(doCardUpdates.init).observe(xcards);
-  },1350);
-    
- 
+    new ResizeObserver(doCardUpdates.init).observe(xcards);
+  }, 1350);
 
-  
-
-  console.log(
-    `\n [EXP-237] ... Sparks Options in Local Storage, Cookie checked. Fetched disabled  \n\n DONE! `
+  console.info(
+    `\n [EXP-237] ... Sparks Options/ Fetched Loyalty API data to Storage, 
+    				  User cookie Verified 
+    				  User Offers Available
+    				  ResizeObserver should be On
+    				  Include Mutation too.
+    				  Refactor all this
+    				  Test in Isolation - Disable ResizeObserver under Resize Event.
+    				  
+                      \n\n DONE! ....1350ms timeout (Temp)`
   );
-}); // load page event
+}); // load pg fns
 
-
-
-
-
+/*
+  Cards 
+  Containers below
+  function
+  
+  Timeout 700ms (Temp)
+  
+  :::::
+  
+*/
 
 var carouselData = function () {
-	
+  console.log("is cookiegood val ", cookieGood);
 
-    const getSparks = () => {
-      let optns = JSON.parse(localStorage.getItem("sparkOptionsComplete"));
-      console.log('sparkOptionsComplete', optns);
-      return optns || 0;
-    };
-  
-    return {
-      init: function () {
-        this.sparkOptionsComplete = getSparks();
-        this.doCards();
+  const getSparks = () => {
+    let optns = JSON.parse(localStorage.getItem("sparkOptionsComplete"));
+    return optns || 0;
+  };
+
+  return {
+    init: function () {
+      this.sparkOptionsComplete = getSparks();
+      this.doCards();
+    },
+
+    sparkCards: [
+      {
+        id: 0,
+        className: "hidden",
+
+        type: "viewBag",
+        close: "close-card",
+        closeEle: "X",
+        footer: "New Sparks offers waiting for you",
+        image: "https://donpio.tech/repositories/mtest/images/Card_NEW.png",
+        image_mob:
+          "https://donpio.tech/repositories/mtest/images/Card_NEW01.png",
+        width: 144,
+        height: 90,
+        showNotification: true,
+        tcards: 0,
+        emjIcon: true,
       },
-  
-      sparkCards: [
-        //sample id#s 9019, 6883
-        {
-          //ids passed into html as datasets: 'data-id'
-  
-          id: 0,
-          className: "hidden",
-  
-          type: "viewBag",
-          close: "close-card",
-          closeEle: "X",
-          footer: "New Sparks offers waiting for you",
-          image: "https://donpio.tech/repositories/mtest/images/Card_NEW.png",
-          image_mob:
-            "https://donpio.tech/repositories/mtest/images/Card_NEW01.png",
-          width: 144,
-          height: 90,
-          showNotification: true,
-          tcards: 0,
-          emjIcon: true,
-        },
-        {
-          id: 0,
-          className: "hidden",
-  
-          type: "viewOrder",
-          close: "close-card",
-          closeEle: "X",
-          footer: 'You have items in your bag. <a href="#">View bag.</a>',
-          image: "https://donpio.tech/repositories/mtest/images/Card_NEW.png",
-          image_mob:
-            "https://donpio.tech/repositories/mtest/images/Card_NEW01.png",
-          width: 600,
-          height: 600,
-          showNotification: false,
-          tcards: 0,
-          emjIcon: false,
-        },
-      ],
-  
-      // returns 4 digit int
-      addIds: (cards) => {
-      	let cids;
-      	if(cards) {
-         return cards.map(li =>  li.id = Math.floor(1000 + Math.random() * 9000))
-      	}
-      		
-      	},
-  
-      compileCards: function (cards) {
-        let isNotifi;
-        if (this.sparkOptionsComplete) {
-          isNotifi = this.sparkOptionsComplete.offersBreakdown.totalOffers;
-        }
-  
-        const crds = document.createElement("div");
-        let cardsContent = "";
-        for (let c = 0; c < cards.length; c++) {
+      {
+        id: 0,
+        className: "hidden",
+
+        type: "viewOrder",
+        close: "close-card",
+        closeEle: "X",
+        footer: 'You have items in your bag. <a href="#">View bag.</a>',
+        image: "https://donpio.tech/repositories/mtest/images/Card_NEW.png",
+        image_mob:
+          "https://donpio.tech/repositories/mtest/images/Card_NEW01.png",
+        width: 600,
+        height: 600,
+        showNotification: false,
+        tcards: 0,
+        emjIcon: false,
+      },
+    ],
+
+    // returns 4 digit int
+    addIds: (cards) => {
+      let cids;
+      if (cards) {
+        return cards.map(
+          (li) => (li.id = Math.floor(1000 + Math.random() * 9000))
+        );
+      }
+    },
+
+    compileCards: function (cards) {
+      console.log("is cookiegood val ", cookieGood);
+      let isNotifi;
+      if (
+        this.sparkOptionsComplete &&
+        cookieGood("MS_USER_COOKIE_10151", "cookieValue")
+      ) {
+        isNotifi = this.sparkOptionsComplete.offersBreakdown.totalOffers;
+      }
+
+      const crds = document.createElement("div");
+      let cardsContent = "";
+      for (let c = 0; c < cards.length; c++) {
+        cardsContent +=
+          '<div data-id="' +
+          cards[c].id +
+          '" class="item ' +
+          cards[c].className +
+          '">';
+
+        if (c === 0) {
           cardsContent +=
-            '<div data-id="' +
-            cards[c].id +
-            '" class="item ' +
-            cards[c].className +
-            '">';
-  
-          if (c === 0) {
-            cardsContent +=
-              '<img  class="card-logo" style="" width="' +
-              parseInt(cards[c].width) +
-              '" height="' +
-              parseInt(cards[c].height) +
-              '" src="' +
-              cards[c].image +
-              '"/>';
-          }
-  
-          if (c === 1) {
-            let img =
-              this.sparkOptionsComplete.offersBreakdown.allOffers[0].offers[0].imageUrl;
-            cardsContent +=
-              '<img  class="card-logo card-spark" style="" width="' +
-              parseInt(cards[c].width) +
-              '" height="' +
-              parseInt(cards[c].height) +
-              '" src="' +
-              img +
-              '"/>';
-          }
-  
-          cardsContent += `<div class="card-notification__wrapper">`;
-          cardsContent += cards[c].showNotification
-            ? '<span class="card-notification">' + isNotifi + "</span>"
-            : "";
-  
-          cardsContent += "</div>";
-  
-          cardsContent += `<p class="heading">${cards[c].footer}`;
-  
-          cardsContent += cards[c].emjIcon
-            ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti.png" />'
-            : '<img src=""/>';
-  
-          cardsContent += "</p>";
-  
-          cardsContent += `<span onclick="void(0)" class="${cards[c].close}">${cards[c].closeEle}</span></div>`;
+            '<img  class="card-logo" style="" width="' +
+            parseInt(cards[c].width) +
+            '" height="' +
+            parseInt(cards[c].height) +
+            '" src="' +
+            cards[c].image +
+            '"/>';
         }
-  
-        crds.innerHTML = cardsContent;
-		console.log('cards content ',cardsContent);
-		console.log('crds ', crds);
-        return crds;
-      },
-  
-      callOut: function (t) {
-        return clearTimeout(t);
-      },
-      
-  
-      doCards: function () {
-        let spcrds;
-        cids = this.addIds.apply(this.sparkCards)
-        this.addIds(this.sparkCards);
-        spcrds = this.sparkCards;
-  
-        if (spcrds) {
-        new Promise(resolve => {
-            resolve(this.compileCards(spcrds))
-          }).then(data => {
+
+        if (c === 1 && cookieGood("MS_USER_COOKIE_10151", "cookieValue")) {
+          let img =
+            this.sparkOptionsComplete.offersBreakdown.allOffers[0].offers[0]
+              .imageUrl;
+          cardsContent +=
+            '<img  class="card-logo card-spark" style="" width="' +
+            parseInt(cards[c].width) +
+            '" height="' +
+            parseInt(cards[c].height) +
+            '" src="' +
+            img +
+            '"/>';
+        }
+
+        cardsContent += `<div class="card-notification__wrapper">`;
+        cardsContent += cards[c].showNotification
+          ? '<span class="card-notification">' + isNotifi + "</span>"
+          : "";
+
+        cardsContent += "</div>";
+
+        cardsContent += `<p class="heading">${cards[c].footer}`;
+
+        cardsContent += cards[c].emjIcon
+          ? '<img class="card-confetti" src="https://donpio.tech/repositories/mtest/images/confetti.png" />'
+          : '<img src=""/>';
+
+        cardsContent += "</p>";
+
+        cardsContent += `<span onclick="void(0)" class="${cards[c].close}">${cards[c].closeEle}</span></div>`;
+      }
+
+      crds.innerHTML = cardsContent;
+      console.log("cards content ", cardsContent);
+      console.log("crds ", crds);
+      return crds;
+    },
+
+    callOut: function (t) {
+      return clearTimeout(t);
+    },
+
+    doCards: function () {
+      let spcrds;
+      cids = this.addIds.apply(this.sparkCards);
+      this.addIds(this.sparkCards);
+      spcrds = this.sparkCards;
+
+      if (spcrds) {
+        new Promise((resolve) => {
+          resolve(this.compileCards(spcrds));
+        })
+          .then((data) => {
             let compcards = data;
-            console.log('what is compcards ', compcards)
-            
-            if (document.getElementById('content')) {
-            
+            console.log("what is compcards ", compcards);
+
+            if (document.getElementById("content")) {
               document
-                .querySelector('#content')
-                .insertAdjacentHTML('beforeend', compcards.innerHTML)
+                .querySelector("#content")
+                .insertAdjacentHTML("beforeend", compcards.innerHTML);
             }
-          }).then((data) => {
-          	
-           let crs = [];
-              if (data) data.forEach(itm => crs.push(itm)); 
-                let orig = document.querySelectorAll('.item');
-                orig.forEach(sl => crs.push(sl));
-                crs.map(crd => crd.classList.remove('hidden')),
-                  crs.hidden = true,
-                  window.gsap ? window.gsap.from(crs, {
-                    duration: 2.5,
-                    autoAlpha: 1,
-                    opacity: 1,
-                    stagger: 0.35,
-                    rotationY: 100,
-                    y: -2200,
-                    transformOrigin: 'center bottom',
-                    delay: 0.1,
-                    ease: 'power2.inOut'
-                  },'+=.45') : ''
+          })
+          .then((data) => {
+            let crs = [];
+            if (data) data.forEach((itm) => crs.push(itm));
+            let orig = document.querySelectorAll(".item");
+            orig.forEach((sl) => crs.push(sl));
+            crs.map((crd) => crd.classList.remove("hidden")),
+              (crs.hidden = true),
+              window.gsap
+                ? window.gsap.from(
+                    crs,
+                    {
+                      duration: 2.5,
+                      autoAlpha: 1,
+                      opacity: 1,
+                      stagger: 0.35,
+                      rotationY: 100,
+                      y: -2200,
+                      transformOrigin: "center bottom",
+                      delay: 0.1,
+                      ease: "power2.inOut",
+                    },
+                    "+=.45"
+                  )
+                : "";
           });
-  
-        }
-      },
-    }
-    
- 
- 
+      }
+    },
+  };
 };
 
-
 setTimeout(() => {
-	let data = carouselData();
-	data.init();
-	
-},700)
-
-
+  let data = carouselData();
+  data.init();
+}, 700);
