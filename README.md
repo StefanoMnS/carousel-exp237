@@ -34,11 +34,10 @@ DLP, PLP, PDP
 - Animation:        
     •  Page load: it drops each card in sequence one after another       
     •  Scroll left/right: upon reaching the end, card bounces (both scroll and touch events)
-
 -`Drag/touch` and `snap` to edges in **mobile**
 -`Last/First` cards in a row **bounces** as it reaches **viewport's edge**
-
 - `Generate` card `Id` from JS Obj key/val pairs
+- Click/drag/touch event timing issues solved with time-stamps and css to avoid events from propagating onto displaced elems once cards/container removed.
 
 
 
