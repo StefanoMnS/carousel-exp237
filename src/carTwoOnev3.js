@@ -15,7 +15,8 @@ function externalScripts() {
   );
 }
 externalScripts();
-const url = "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js";
+const url =
+  "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js?callback=callback";
 
 var closCarousel237 = (function () {
   const removeDshContainer = function (id, e) {
@@ -57,723 +58,756 @@ var closCarousel237 = (function () {
   };
 
   const mainStyles = `
+		   
+	  * {
+	   box-sizing: border-box;
+	   scroll-behavior: smooth;
+	  }
+	   .below-header img {
+		  display: none !important;
+	  }
+	   .main-wrapper--exp237 {
+		   transition: display 3s linear 3s, opacity 3s linear 3s, height 3s linear 3s;
+		   margin: 0;
+		   margin-top: 16px;
+		   box-sizing: border-box;
+		   display: flex;
+		   justify-content: center;
+		   align-items: center;
+		   overflow-y: auto;
+		   flex-direction: column;
+		   height: 170px;
+		   background-color: #F1EDEC;
+		   width: 100%;
+		   font-family: MS London,Helvetica,Arial,sans-serif;
+	  }
+	   .main-wrapper--exp237.removed {
+		   transition: display 3s linear 3s 3s, opacity 3s linear 3s 3s, height 3s linear 3s 3s;
+		   display: none;
+		   opacity: 0;
+		   height: 0;
+	  }
+	   #main-wrapper--exp237 {
+		   width: 100%;
+		   max-width: 1280px;
+		   height: 100%;
+		   margin: 0 auto;
+		   flex-direction: column;
+		   display: flex;
+		   justify-content: space-around;
+		   overflow-y: hidden;
+		   background-color:#F1EDEC;
+	  }
+	   #main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
+		   display: none;
+		   height: 0;
+	  }
+	   #carousel--container {
+		   margin: 0;
+		   display: flex;
+		   flex-direction: column;
+		   margin-bottom: 33px;
+		   width: 100%;
+		   overflow-y: scroll;
+	  }
+	   #carousel--container.noflow {
+		   overflow: hidden;
+	  }
+	   #main-wrapper--exp237 #carousel--wrapper {
+		   width: 100%;
+		   margin: 0;
+		   padding: 0 1rem;
+		   display: flex;
+		   flex-wrap: wrap;
+		   background-color: #F1EDEC;
+	  }
+	   #main-wrapper--exp237 #content {
+		   display: grid;
+		   grid-gap: 16px;
+		   grid-auto-flow: column;
+		   margin: auto;
+		   box-sizing: border-box;
+		   position: relative;
+		   overflow-y: hidden;
+	  }
+	   #main-wrapper--exp237 #content {
+		   display: flex;
+		   margin: 0;
+		   justify-content: flex-start;
+		   z-index:0;
+	  }
+	  .item span.close-card {
+		  transition: all 0.75s linear 250ms;
+		  height: auto;
+		  font-weight: 300;
+		  color: #333;
+		  opacity: 1;
+		  cursor: pointer;
+		  transform: scale(1.15,0.9) translate(-9px, -22px);
+		  position: absolute;
+		  top: 23px;
+		  right: -8px;
+		  width: 25px;
+		  text-align: center;
+	  }
+	   .item.removed {
+		   display: none !important;
+	  }
+	   .account--holder__greet {
+		   height: 40px;
+		   display: flex;
+		   flex-direction: column;
+		   justify-content: flex-start;
+		   width: 100%;
+		   margin-bottom: 4px;
+		   margin-top: 15px;
+	  }
+	   .account--holder__greet p {
+		   margin: 0;
+		   line-height: 40px;
+		   font-size: 18px;
+		   font-weight: 700;
+	  }
+	   #main-wrapper--exp237 .item {
+		   border-radius: 8px;
+		   cross-fade: 0%;
+		   --webkit-cross-fade: 0%;
+		   height: 78px;
+		   cursor: move;
+		   cursor: grab;
+		   cursor: -moz-grab;
+		   cursor: -webkit-grab;
+		   width: 300px;
+		   background-color: #fff;
+		   border: 1px solid #d9d9d9;
+		   flex-direction: row;
+		   justify-content: space-between;
+		   align-items: center;
+		   flex-wrap: nowrap;
+		   min-width: 300px;
+		   transition: all 2.5s 750ms;
+		   z-index: -1;
+		   position: relative;
+	  }
+	   #main-wrapper--exp237 .item::after {
+		   outline: 12px solid #747474;
+		   border-radius:50%;
+	  }
+	   #main-wrapper--exp237 .item.removed {
+		   opacity: 0;
+		   display: none;
+	  }
+	   #main-wrapper--exp237 .item.hidden {
+		   display: none;
+		   opacity:0;
+	  }
+	   #main-wrapper--exp237 img.card-logo {
+		   transition: display 0.45s linear 25ms;
+		   width: 100%;
+		   padding: 0;
+		   height: 76px;
+		   position: relative;
+		   max-width: 123px;
+		   padding: 0px 0px 0px 0px;
+		   transform: rotate(360deg);
+	  }
+	   #main-wrapper--exp237 img.card-logo.card-spark {
+		   max-width: 77px;
+		  height: 77px;
+		  padding: 12px 10px 10px 15px;
+		  width: 100%;
+	  }
+	   #main-wrapper--exp237 .heading a {
+		   display: contents;
+		   width: 67px;
+		   text-decoration: none;
+		   font-weight: 700;
+	  }
+	   #main-wrapper--exp237 .heading {
+		   letter-spacing: 0;
+		   color: #000000;
+		   line-height: 20px;
+		   margin: 0;
+		   max-width: 165px;
+		   font-weight: 400;
+		   font-size: 14px;
+		   margin-left: 105px;
+		   margin-right: 0;
+		   position: relative;
+		   display: flex;
+		   height: 40px;
+		   top: -65px;
+		   text-align: left;
+		   font-family: "MS London eText";
+		   
+		   
+		   
+		   
+		   width: 100%;
+	  }
+	  /* img is of diff width */
+	  #main-wrapper--exp237 #content > div:nth-child(2) > .heading {
+		  letter-spacing: 0;
+		  color: #000000;
+		  line-height: 20px;
+		  margin: 0;
+		  max-width: 157px;
+		  font-weight: 400;
+		  font-size: 14px;
+		  margin-left: 80px;
+		  margin-right: 0;
+		  position: relative;
+		  display: flex;
+		  height: 40px;
+		  top: -66px;
+		  text-align: left;
+		  width: 100%;
+	  }
+	   #main-wrapper--exp237 img.card-confetti {
+		   width: 20px;
+		  height: 20px;
+		  transform: translate(-56px, 0px);
+		  align-self: flex-end;
+		  object-fit: contain;
+		  display: flex;
+	  }
+	   .grabbable {
+		   cursor: move;
+		   cursor: grab;
+		   cursor: -moz-grab;
+		   cursor: -webkit-grab;
+	  }
+	   .grabbable:active {
+		   cursor: grabbing;
+		   cursor: -moz-grabbing;
+		   cursor: -webkit-grabbing;
+	  }
+	   .welcome--message {
+		   width: 100%;
+		   display: flex;
+		   margin: 0.3rem 0 0 0;
+		   justify-content: flex-start;
+	  }
+	   .welcome--message p {
+		   margin: 0;
+		   margin-left: 6.5vw;
+	  }
+	   #carousel--wrapper {
+		   width: 90%;
+		   margin-left: 10%;
+		   position: relative;
+		   padding-top: 60px;
+		   padding-bottom: 33px;
+		  /*/
+		  /background: #f5f5f5;
+		  */
+	  }
+	   #carousel--container {
+		   height: 78px;
+		   margin: 0;
+		   scroll-behavior: smooth;
+		   margin: 0;
+		   -ms-overflow-style: none;
+		   scrollbar-width: none;
+		   display: flex;
+		   margin-left: 0;
+		   margin-bottom: 33px;
+		   justify-content: flex-start;
+	  }
+	   .card-notification__wrapper {
+		   position: relative;
+		   top: -66px;
+		   left: -1px;
+		   background: rgba(255, 255, 255, 0.35);
+	  }
+	   .welcome--message {
+		   width: 100%;
+		   display: flex;
+		   margin: 0.3rem 0 0 0;
+		   justify-content: flex-start;
+	  }
+	   .welcome--message p {
+		   margin: 0;
+		   margin-left: 6.5vw;
+	  }
+	   #carousel--wrapper {
+		   width: 90%;
+		   margin-left: 10%;
+		   position: relative;
+		   padding-top: 60px;
+		   padding-bottom: 33px;
+		   background: #fff;
+	  }
+	   #prev, #next {
+		   display: none;
+	  }
+	   #carousel--wrapper button#next svg {
+		   display: none;
+	  }
+	   #main-wrapper--exp237 .card-notification__wrapper {
+		   position: relative;
+		   top: -30px;
+		   left: -20px;
+		   background: rgba(255, 255, 255, 0.35);
+	  }
+	   #main-wrapper--exp237 .card-notification {
+		   height: 21px;
+		  width: 21px;
+		  border: 1px solid rgb(255 255 255);
+		  border-radius: 50%;
+		  position: absolute;
+		  background-color: #333;
+		  color: rgb(255 255 255);
+		  line-height: 20px;
+		  text-align: center;
+		  font-size: 11px;
+		  font-weight: normal;
+		  z-index: 30;
+		  top: -47px;
+		  right: 181px;
+	  }
+	   @keyframes bounce {
+		   70% {
+			   transform: translateY(0%);
+		  }
+		   80% {
+			   transform: translateY(-15%);
+		  }
+		   90% {
+			   transform: translateY(0%);
+		  }
+		   95% {
+			   transform: translateY(-7%);
+		  }
+		   97% {
+			   transform: translateY(0%);
+		  }
+		   99% {
+			   transform: translateY(-3%);
+		  }
+		   100% {
+			   transform: translateY(0);
+		  }
+	  }
+	   .item.bounce {
+		   animation: bounce 0.75s ease 0ms;
+	  }
+  
+	   @media only screen and (min-width: 1025px) {
+		   .main-wrapper--exp237 {
+			   margin-top: 0;
+			   height: 170px;
+			   pointer-events: auto;
+		  }
+		   #main-wrapper--exp237 #carousel--wrapper {
+			   width: 90%;
+			   margin-left: 10%;
+			   position: relative;
+		  }
+		   #carousel--container {
+			   display: flex;
+			   margin-left: 0;
+			   justify-content: flex-start;
+			   margin-bottom: 33px;
+		  }
+		   #main-wrapper--exp237 #content {
+			   display: flex;
+			   margin: 0;
+			   justify-content: flex-start;
+		  }
+		   #main-wrapper--exp237 img.card-logo {
+			   transition: display 0.45s linear 25ms;
+			   width: 100%;
+			   padding: 0;
+			   height: 76px;
+			   position: relative;
+			   max-width: 123px;
+			   padding: 0px 0px 0px 0px;
+			   transform: rotate(360deg);
+		  }
+		   #main-wrapper--exp237 .item {
+			   cursor: pointer;
+			   pointer-events: auto;
+		  }
+		   #main-wrapper--exp237 .heading {
+			  letter-spacing: 0;
+			  color: #000;
+			  line-height: 20px;
+			  margin: 0;
+			  max-width: 168px;
+			  font-weight: normal;
+			  font-size: 14px;
+			  margin-left: 100px;
+			  margin-right: 0;
+			  top: -66px;
+			  position: relative;
+			  display: flex;
+			  font-family: "MS London eText";
+		  }
+		  
+		  #main-wrapper--exp237 #content > div:nth-child(2) > .heading {
+				  letter-spacing: 0;
+				  color: #000000;
+				  line-height: 20px;
+				  margin: 0;
+				  max-width: 157px;
+				  font-weight: 400;
+				  font-size: 14px;
+				  margin-left: 82px;
+				  margin-right: 0;
+				  position: relative;
+				  display: flex;
+				  height: 40px;
+				  top: -66px;
+				  text-align: left;
+				  width: 100%;
+		  }
+		  
+		  #main-wrapper--exp237 .card-notification__wrapper {
+			  position: relative;
+			  top: -30px;
+			  left: -20px;
+			  background: rgba(255, 255, 255, 0.35);
+		  }
+		  
+		  
+		   #main-wrapper--exp237 .card-notification {
+			  height: 21px;
+			  width: 21px;
+			  border: 1px solid rgb(255 255 255);
+			  border-radius: 50%;
+			  position: absolute;
+			  background-color: #333;
+			  color: rgb(255 255 255);
+			  line-height: 20px;
+			  text-align: center;
+			  font-size: 11px;
+			  font-weight: normal;
+			  z-index: 30;
+			  top: -47px;
+			  right: 181px;
+		  }
+		   #main-wrapper--exp237 #carousel--wrapper #prev:focus, #carousel--wrapper #next:focus {
+			   outline: none;
+			   box-shadow: none;
+		  }
+		   #main-wrapper--exp237 button svg {
+			   width: 35px;
+			   height: 40px;
+			   fill: rgba(255, 255, 255, 0.35);
+			   width: 35px;
+			   stroke-width: 2px;
+			   backdrop-filter: opacity(0.35);
+		  }
+		   #main-wrapper--exp237 #prev, #main-wrapper--exp237 #next {
+			   justify-content: center;
+			   align-content: center;
+			   width: 35px;
+			   height: 40px;
+			   fill: rgba(255, 255, 255, 0.35);
+			   stroke-width: 2px;
+			   backdrop-filter: opacity(0.5);
+			   border: none;
+			   padding: 1px;
+			   border-radius: 0;
+			   outline: 0;
+			   cursor: pointer;
+			   position: absolute;
+			   line-height: 0.5;
+		  }
+		   #main-wrapper--exp237 #prev {
+			   top: 67%;
+			   left: 0;
+			   left: -75px;
+			   transform: translate(50%, -50%) rotate(180deg);
+		  }
+		   #main-wrapper--exp237 #next {
+			   top: 67%;
+			   right: 16%;
+			   transform: translate(-50%, -50%);
+			   background-color: initial;
+		  }
+		   .account--holder__greet {
+			   display: flex;
+			   margin-left: 0;
+			   justify-content: flex-start;
+		  }
+		   .account--holder__greet p {
+			   margin: 0;
+			   padding: 0 5px;
+			   font-weight: 600;
+			   letter-spacing: 0;
+			   width: 213px;
+			   font-size: 18px;
+			   color: #000;
+			   font-family: "MS London eText Demibold";
+		  }
+	  }
+	   @media only screen and (min-width:320px) and (max-width: 1024px) and (device-pixel-ratio: 1) {
+		   #prev, #next {
+			   display: none;
+		  }
+		   #carousel--wrapper button#next svg {
+			   display: none;
+		  }
+		  
+		  #main-wrapper--exp237::-webkit-scrollbar {
+			  display: none;
+			  -ms-overflow-style: none; 
+			  scrollbar-width: none; 
+		  }
+		   #carousel--container::-webkit-scrollbar {
+					  display: none;
+					  -ms-overflow-style: none; 
+					  scrollbar-width: none; 
+		  }
 		 
-	* {
-     box-sizing: border-box;
-     scroll-behavior: smooth;
-	}
-	 .below-header img {
-	    display: none !important;
-	}
-	 .main-wrapper--exp237 {
-	     transition: display 3s linear 3s, opacity 3s linear 3s, height 3s linear 3s;
-	     margin: 0;
-	     margin-top: 16px;
-	     box-sizing: border-box;
-	     display: flex;
-	     justify-content: center;
-	     align-items: center;
-	     overflow-y: auto;
-	     flex-direction: column;
-	     height: 140px;
-	     background-color: #F1EDEC;
-	     width: 100%;
-	     font-family: mns-london,Helvetica,Arial,sans-serif;
-	}
-	 .main-wrapper--exp237.removed {
-	     transition: display 3s linear 3s 3s, opacity 3s linear 3s 3s, height 3s linear 3s 3s;
-	     display: none;
-	     opacity: 0;
-	     height: 0;
-	}
-	 #main-wrapper--exp237 {
-	     width: 100%;
-	     max-width: 1280px;
-	     height: 100%;
-	     margin: 0 auto;
-	     flex-direction: column;
-	     display: flex;
-	     justify-content: space-around;
-	     overflow-y: hidden;
-	     background-color:#F1EDEC;
-	}
-	 #main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
-	     display: none;
-	     height: 0;
-	}
-	 #carousel--container {
-	     margin: 0;
-	     display: flex;
-	     flex-direction: column;
-	     width: 100%;
-	     overflow-y: scroll;
-	}
-	 #carousel--container.noflow {
-	     overflow: hidden;
-	}
-	 #main-wrapper--exp237 #carousel--wrapper {
-	     width: 100%;
-	     margin: 0;
-	     padding: 0 1rem;
-	     display: flex;
-	     flex-wrap: wrap;
-	     background-color: #F1EDEC;
-	}
-	 #main-wrapper--exp237 #content {
-	     display: grid;
-	     grid-gap: 16px;
-	     grid-auto-flow: column;
-	     margin: auto;
-	     box-sizing: border-box;
-	     position: relative;
-	     overflow-y: hidden;
-	}
-	 #main-wrapper--exp237 #content {
-	     display: flex;
-	     margin: 0;
-	     justify-content: flex-start;
-	     z-index:0;
-	}
-	 .item span.close-card {
-	     transition: all 0.75s linear 250ms;
-	     height: auto;
-	     font-weight: 600;
-	     color: #999;
-	     opacity: 1;
-	     cursor: pointer;
-	     transform: scaleX(1.4) translate(-9px, -22px);
-	     position: absolute;
-	     top: 24px;
-	     right: -9px;
-	     width: 30px;
-	     text-align: center;
-	}
-	 .item.removed {
-	     display: none !important;
-	}
-	 .account--holder__greet {
-	     height: 40px;
-	     display: flex;
-	     flex-direction: column;
-	     justify-content: flex-start;
-	     width: 100%;
-	     margin-bottom: 4px;
-	     margin-top: 16px;
-	}
-	 .account--holder__greet p {
-	     margin: 0;
-	     line-height: 40px;
-	     font-size: 18px;
-	     font-weight: 700;
-	}
-	 #main-wrapper--exp237 .item {
-	     border-radius: 8px;
-	     cross-fade: 0%;
-	     --webkit-cross-fade: 0%;
-	     height: 78px;
-	     cursor: move;
-	     cursor: grab;
-	     cursor: -moz-grab;
-	     cursor: -webkit-grab;
-	     width: 300px;
-	     background-color: #fff;
-	     border: 1px solid #d9d9d9;
-	     flex-direction: row;
-	     justify-content: space-between;
-	     align-items: center;
-	     flex-wrap: nowrap;
-	     min-width: 300px;
-	     transition: all 2.5s 750ms;
-	     z-index: -1;
-	     position: relative;
-	}
-	 #main-wrapper--exp237 .item::after {
-	     outline: 12px solid #747474;
-	     border-radius:50%;
-	}
-	 #main-wrapper--exp237 .item.removed {
-	     opacity: 0;
-	     display: none;
-	}
-	 #main-wrapper--exp237 .item.hidden {
-	     display: none;
-	     opacity:0;
-	}
-	 #main-wrapper--exp237 img.card-logo {
-	     transition: display 0.45s linear 25ms;
-	     width: 100%;
-	     padding: 0;
-	     height: auto;
-	     position: relative;
-	     max-width: 129px;
-	     padding: 0px 0px 0px 0px;
-	     transform: rotate(360deg);
-	}
-	 #main-wrapper--exp237 img.card-logo.card-spark {
-	     max-width: 75px;
-	     height: auto;
-	     padding: 15px 10px 15px 15px;
-	     width: 100%;
-	}
-	 #main-wrapper--exp237 .heading a {
-	     display: contents;
-	     width: 67px;
-	     text-decoration: none;
-	     font-weight: 700;
-	}
-	 #main-wrapper--exp237 .heading {
-	     letter-spacing: 0;
-	     color: #000000;
-	     line-height: 20px;
-	     margin: 0;
-	     max-width: 193px;
-	     font-weight: 600;
-	     font-size: 14px;
-	     margin-left: 103px;
-	     margin-right: 0;
-	     position: relative;
-	     display: flex;
-	     height: 40px;
-	     top: -69px;
-	     text-align: left;
-	     width: 100%;
-	}
-	/* img is of diff width */
-	 #main-wrapper--exp237 #content > div:nth-child(2) > .heading {
-	     letter-spacing: 0;
-	     color: #000000;
-	     line-height: 20px;
-	     margin: 0;
-	     max-width: 193px;
-	     font-weight: 600;
-	     font-size: 14px;
-	     margin-left: 80px;
-	     margin-right: 0;
-	     position: relative;
-	     display: flex;
-	     height: 40px;
-	     top: -69px;
-	     text-align: left;
-	     width: 100%;
-	}
-	 #main-wrapper--exp237 img.card-confetti {
-	     width: 22px;
-	     height: 22px;
-	     transform: translate(-45px, 2px);
-	     align-self: flex-end;
-	     object-fit: contain;
-	     display: flex;
-	}
-	 .grabbable {
-	     cursor: move;
-	     cursor: grab;
-	     cursor: -moz-grab;
-	     cursor: -webkit-grab;
-	}
-	 .grabbable:active {
-	     cursor: grabbing;
-	     cursor: -moz-grabbing;
-	     cursor: -webkit-grabbing;
-	}
-	 .welcome--message {
-	     width: 100%;
-	     display: flex;
-	     margin: 0.3rem 0 0 0;
-	     justify-content: flex-start;
-	}
-	 .welcome--message p {
-	     margin: 0;
-	     margin-left: 6.5vw;
-	}
-	 #carousel--wrapper {
-	     width: 90%;
-	     margin-left: 10%;
-	     position: relative;
-	     padding-top: 60px;
-	     padding-bottom: 33px;
-	    /*/
-	    /background: #f5f5f5;
-	    */
-	}
-	 #carousel--container {
-	     height: 78px;
-	     margin: 0;
-	     scroll-behavior: smooth;
-	     margin: 0;
-	     -ms-overflow-style: none;
-	     scrollbar-width: none;
-	     display: flex;
-	     margin-left: 0;
-	     margin-bottom: 4px;
-	     justify-content: flex-start;
-	}
-	 .card-notification__wrapper {
-	     position: relative;
-	     top: -66px;
-	     left: -1px;
-	     background: rgba(255, 255, 255, 0.35);
-	}
-	 .welcome--message {
-	     width: 100%;
-	     display: flex;
-	     margin: 0.3rem 0 0 0;
-	     justify-content: flex-start;
-	}
-	 .welcome--message p {
-	     margin: 0;
-	     margin-left: 6.5vw;
-	}
-	 #carousel--wrapper {
-	     width: 90%;
-	     margin-left: 10%;
-	     position: relative;
-	     padding-top: 60px;
-	     padding-bottom: 33px;
-	     background: #fff;
-	}
-	 #prev, #next {
-	     display: none;
-	}
-	 #carousel--wrapper button#next svg {
-	     display: none;
-	}
-	 #main-wrapper--exp237 .card-notification__wrapper {
-	     position: relative;
-	     top: -30px;
-	     left: -20px;
-	     background: rgba(255, 255, 255, 0.35);
-	}
-	 #main-wrapper--exp237 .card-notification {
-	     height: 22px;
-	     width: 22px;
-	     border: 1px solid rgb(255 255 255);
-	     border-radius: 50%;
-	     position: absolute;
-	     background-color: #333;
-	     color: rgb(255 255 255);
-	     line-height: 20px;
-	     text-align: center;
-	     font-size: 12px;
-	     z-index: 30;
-	     top: -49px;
-	     right: 177px;
-	}
-	 @keyframes bounce {
-	     70% {
-	         transform: translateY(0%);
-	    }
-	     80% {
-	         transform: translateY(-15%);
-	    }
-	     90% {
-	         transform: translateY(0%);
-	    }
-	     95% {
-	         transform: translateY(-7%);
-	    }
-	     97% {
-	         transform: translateY(0%);
-	    }
-	     99% {
-	         transform: translateY(-3%);
-	    }
-	     100% {
-	         transform: translateY(0);
-	    }
-	}
-	 .item.bounce {
-	     animation: bounce 0.75s ease 0ms;
-	}
-	/* MediaQueries bellow -------------------- (320 < |-| > 823), LT-1024 -2X, GT-1025 */
-	 @media only screen and (min-width: 1025px) {
-	     .main-wrapper--exp237 {
-	         margin-top: 0;
-	         pointer-events: auto;
-	    }
-	     #main-wrapper--exp237 #carousel--wrapper {
-	         width: 90%;
-	         margin-left: 10%;
-	         position: relative;
-	    }
-	     #carousel--container {
-	         display: flex;
-	         margin-left: 0;
-	         justify-content: flex-start;
-	    }
-	     #main-wrapper--exp237 #content {
-	         display: flex;
-	         margin: 0;
-	         justify-content: flex-start;
-	    }
-	     #main-wrapper--exp237 img.card-logo {
-	         transition: display 0.45s linear 25ms;
-	         width: 100%;
-	         padding: 0;
-	         height: auto;
-	         position: relative;
-	         max-width: 129px;
-	         padding: 0px 0px 0px 0px;
-	         transform: rotate(360deg);
-	    }
-	     #main-wrapper--exp237 .item {
-	         cursor: pointer;
-	         pointer-events: auto;
-	    }
-	     #main-wrapper--exp237 .heading {
-	         letter-spacing: 0;
-	         color: #000000;
-	         line-height: 20px;
-	         margin: 0;
-	         max-width: 193px;
-	         font-weight: 600;
-	         font-size: 14px;
-	         margin-left: 103px;
-	         margin-right: 0;
-	         position: relative;
-	         display: flex;
-	         height: 40px;
-	         top: -69px;
-	         text-align: left;
-	         width: 100%;
-	    }
-	     #main-wrapper--exp237 .card-notification {
-	         height: 22px;
-	         width: 22px;
-	         border: 1px solid rgb(255 255 255);
-	         border-radius: 50%;
-	         position: absolute;
-	         background-color: #333;
-	         color: rgb(255 255 255);
-	         line-height: 20px;
-	         text-align: center;
-	         font-size: 12px;
-	         z-index: 30;
-	         top: -49px;
-	         right: 177px;
-	    }
-	     #main-wrapper--exp237 #carousel--wrapper #prev:focus, #carousel--wrapper #next:focus {
-	         outline: none;
-	         box-shadow: none;
-	    }
-	     #main-wrapper--exp237 button svg {
-	         width: 35px;
-	         height: 40px;
-	         fill: rgba(255, 255, 255, 0.35);
-	         width: 35px;
-	         stroke-width: 2px;
-	         backdrop-filter: opacity(0.35);
-	    }
-	     #main-wrapper--exp237 #prev, #main-wrapper--exp237 #next {
-	         justify-content: center;
-	         align-content: center;
-	         width: 35px;
-	         height: 40px;
-	         fill: rgba(255, 255, 255, 0.35);
-	         stroke-width: 2px;
-	         backdrop-filter: opacity(0.5);
-	         border: none;
-	         padding: 1px;
-	         border-radius: 0;
-	         outline: 0;
-	         cursor: pointer;
-	         position: absolute;
-	         line-height: 0.5;
-	    }
-	     #main-wrapper--exp237 #prev {
-	         top: 67%;
-	         left: 0;
-	         left: -75px;
-	         transform: translate(50%, -50%) rotate(180deg);
-	    }
-	     #main-wrapper--exp237 #next {
-	         top: 67%;
-	         right: 16%;
-	         transform: translate(-50%, -50%);
-	         background-color: initial;
-	    }
-	     .account--holder__greet {
-	         display: flex;
-	         margin-left: 0;
-	         justify-content: flex-start;
-	    }
-	     .account--holder__greet p {
-	         margin: 0;
-	         padding: 0 5px;
-	         font-weight: 600;
-	         letter-spacing: 0;
-	         width: 213px;
-	         font-size: 18px;
-	         color: #000;
-	         font-family: "MS London eText Demibold";
-	    }
-	}
-	 @media only screen and (min-width:320px) and (max-width: 1024px) and (device-pixel-ratio: 1) {
-	     #prev, #next {
-	         display: none;
-	    }
-	     #carousel--wrapper button#next svg {
-	         display: none;
-	    }
-	    
-	    #main-wrapper--exp237::-webkit-scrollbar {
-	    	display: none;
-	    	-ms-overflow-style: none; 
-		    scrollbar-width: none; 
-	    }
-	     #carousel--container::-webkit-scrollbar {
-			    	display: none;
-			    	-ms-overflow-style: none; 
-				    scrollbar-width: none; 
-	    }
-	   
-	     #main-wrapper--exp237 .item {
-	         border-radius: 8px;
-	         cross-fade: 0%;
-	         --webkit-cross-fade: 0%;
-	         height: 78px;
-	         cursor: move;
-	         cursor: grab;
-	         cursor: -moz-grab;
-	         cursor: -webkit-grab;
-	         width: 300px;
-	         background-color: #fff;
-	         border: 1px solid #d9d9d9;
-	         flex-direction: row;
-	         justify-content: space-between;
-	         align-items: center;
-	         flex-wrap: nowrap;
-	         min-width: 300px;
-	         transition: all 2.5s 750ms;
-	         z-index: -1;
-	         position: relative;
-	    }
-	     #main-wrapper--exp237 .heading {
-	         letter-spacing: 0;
-	         color: #000000;
-	         line-height: 20px;
-	         margin: 0;
-	         max-width: 193px;
-	         font-weight: 600;
-	         font-size: 14px;
-	         margin-left: 103px;
-	         margin-right: 0;
-	         position: relative;
-	         display: flex;
-	         height: 40px;
-	         top: -69px;
-	         text-align: left;
-	         width: 100%;
-	    }
-	  
-	     #main-wrapper--exp237 #content > div:nth-child(2) > .heading {
-	         letter-spacing: 0;
-	         color: #000000;
-	         line-height: 20px;
-	         margin: 0;
-	         max-width: 193px;
-	         font-weight: 600;
-	         font-size: 14px;
-	         margin-left: 80px;
-	         margin-right: 0;
-	         position: relative;
-	         display: flex;
-	         height: 40px;
-	         top: -69px;
-	         text-align: left;
-	         width: 100%;
-	    }
-	     #main-wrapper--exp237 .item::after {
-	         outline: 12px solid #747474;
-	         border-radius:50%;
-	    }
-	     @media only screen and (min-device-width: 320px) and (max-device-height: 823px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
-	         #prev, #next {
-	             display: none;
-	        }
-	         #carousel--wrapper button#next svg {
-	             display: none;
-	        }
-	         .main-wrapper--exp237 {
-	             margin: 0;
-	             margin-top: 16px;
-	             box-sizing: border-box;
-	             display: flex;
-	             justify-content: center;
-	             align-items: center;
-	             overflow-y: auto;
-	             flex-direction: column;
-	             height: 140px;
-	             width: 100%;
-	        }
-	        
-	          #main-wrapper--exp237::-webkit-scrollbar {
-			    	display: none;
-			    	-ms-overflow-style: none; 
-				    scrollbar-width: none; 
-			   }
-	   
-	        
-	        
-	         #main-wrapper--exp237 {
-	             box-sizing: border-box;
-	             background-color: transparent;
-	             width: 100%;
-	             max-width: 1280px;
-	             height: 100%;
-	             margin: 0 auto;
-	             flex-direction: column;
-	             display: flex;
-	             justify-content: space-around;
-	        }
-	         #main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
-	             display: none;
-	             height: 0;
-	        }
-	         #carousel--container {
-	             margin: 0;
-	             display: flex;
-	             flex-direction: column;
-	             width: 100%;
-	             overflow-y: scroll;
-	             margin-bottom: 4px;
-	             scroll-behavior: smooth;
-	             -ms-overflow-style: none;
-	             scrollbar-width: none;
-	        }
-	        
-	         #carousel--container::-webkit-scrollbar {
-			    	display: none;
-			    	-ms-overflow-style: none; 
-				    scrollbar-width: none; 
-			   }
-	   
-	        
-	        
-	         #carousel--container.noflow {
-	             overflow: hidden;
-	        }
-	         #main-wrapper--exp237 #carousel--wrapper {
-	             width: 100%;
-	             margin: 0;
-	             padding: 0 1rem;
-	             display: flex;
-	             flex-wrap: wrap;
-	        }
-	         #main-wrapper--exp237 #content {
-	             display: grid;
-	             grid-gap: 16px;
-	             grid-auto-flow: column;
-	             margin: inherit;
-	             box-sizing: border-box;
-	             position: relative;
-	             overflow-y: hidden;
-	        }
-	         .item span.close-card {
-	             transition: all 0.75s linear 250ms;
-	             height: auto;
-	             font-weight: 600;
-	             color: #999;
-	             opacity: 1;
-	             cursor: pointer;
-	             transform: scaleX(1.4) translate(-9px, -22px);
-	             width: 100%;
-	             max-width: 30px;
-	             text-align: center;
-	             position: absolute;
-	             right: -7px;
-	             top: 24px;
-	        }
-	         #main-wrapper--exp237.item.removed {
-	             display: none;
-	        }
-	         .account--holder__greet {
-	             height: 40px;
-	             display: flex;
-	             flex-direction: column;
-	             justify-content: flex-start;
-	             width: 100%;
-	             margin-bottom: 4px;
-	             margin-top: 16px;
-	        }
-	         .account--holder__greet p {
-	             margin: 0;
-	             font-weight: 700;
-	             font-size: 18px;
-	             line-height: 40px;
-	        }
-	         #main-wrapper--exp237 .item{
-	             border-radius: 8px;
-	             cross-fade: 0%;
-	             --webkit-cross-fade: 0%;
-	             cursor: move;
-	             cursor: grab;
-	             cursor: -moz-grab;
-	             cursor: -webkit-grab;
-	             height: 78px;
-	             width: 300px;
-	             background-color: #fff;
-	             border: 1px solid #d9d9d9;
-	             flex-direction: row;
-	             justify-content: space-between;
-	             align-items: center;
-	             flex-wrap: nowrap;
-	             min-width: 300px;
-	             transition: all 2.5s 750ms;
-	             z-index: -1;
-	             position: relative;
-	        }
-	         #main-wrapper--exp237 .item.hidden {
-	             display: none;
-	        }
-	         #main-wrapper--exp237 img.card-logo {
-	             transition: display 0.45s linear 25ms;
-	             width: 100%;
-	             padding: 0;
-	             height: auto;
-	             position: relative;
-	             max-width: 124px;
-	             transform: rotate(360deg);
-	        }
-	         #main-wrapper--exp237 .item .heading {
-	             letter-spacing: 0;
-	             color: #000000;
-	             font-family: "MS London eText Semibold";
-	             text-align: left;
-	             display: flex;
-	             line-height: 20px;
-	             margin: 0;
-	             width: 160px;
-	             font-size: 14px;
-	             margin-left: -40px;
-	        }
-	         #main-wrapper--exp237 img.card-confetti {
-	             width: 22px;
-	             height: 22px;
-	             transform: translate(-43px, 2px);
-	             align-self: flex-end;
-	             object-fit: contain;
-	             display: flex;
-	        }
-	         .item img.card-confetti::before {
-	             width: 20px;
-	             height: 20px;
-	             display: inline-block;
-	             object-fit: contain;
-	             align-self: flex-end;
-	        }
-	         #main-wrapper--exp237 .carousel--dot span {
-	             display: none;
-	        }
-	         #prev, #next {
-	             display: none;
-	        }
-	         #prev.hidden, #next.hidden {
-	             display: none;
-	        }
-	    }
-	     
-
-	  `;
+		   #main-wrapper--exp237 .item {
+			   border-radius: 8px;
+			   cross-fade: 0%;
+			   --webkit-cross-fade: 0%;
+			   height: 78px;
+			   cursor: move;
+			   cursor: grab;
+			   cursor: -moz-grab;
+			   cursor: -webkit-grab;
+			   width: 300px;
+			   background-color: #fff;
+			   border: 1px solid #d9d9d9;
+			   flex-direction: row;
+			   justify-content: space-between;
+			   align-items: center;
+			   flex-wrap: nowrap;
+			   min-width: 300px;
+			   transition: all 2.5s 750ms;
+			   z-index: -1;
+			   position: relative;
+		  }
+		   #main-wrapper--exp237 .heading {
+			   letter-spacing: 0;
+				  color: #000;
+				  line-height: 20px;
+				  margin: 0;
+				  max-width: 168px;
+				  font-weight: normal;
+				  font-size: 14px;
+				  margin-left: 105px;
+				  margin-right: 0;
+				  position: relative;
+				  display: flex;
+				  font-family: "MS London eText";
+		  }
+		
+		   #main-wrapper--exp237 #content > div:nth-child(2) > .heading {
+			   letter-spacing: 0;
+			   color: #000000;
+			   line-height: 20px;
+			   margin: 0;
+			   max-width: 193px;
+			   font-weight: 600;
+			   font-size: 14px;
+			   margin-left: 80px;
+			   margin-right: 0;
+			   position: relative;
+			   display: flex;
+			   height: 40px;
+			   top: -69px;
+			   text-align: left;
+			   width: 100%;
+		  }
+		   #main-wrapper--exp237 .item::after {
+			   outline: 12px solid #747474;
+			   border-radius:50%;
+		  }
+		   @media only screen and (min-device-width: 320px) and (max-device-height: 823px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
+			   #prev, #next {
+				   display: none;
+			  }
+			   #carousel--wrapper button#next svg {
+				   display: none;
+			  }
+			   .main-wrapper--exp237 {
+				   margin: 0;
+				   margin-top: 16px;
+				   box-sizing: border-box;
+				   display: flex;
+				   justify-content: center;
+				   align-items: center;
+				   overflow-y: auto;
+				   flex-direction: column;
+				   height: 140px;
+				   width: 100%;
+			  }
+			  
+				#main-wrapper--exp237::-webkit-scrollbar {
+					  display: none;
+					  -ms-overflow-style: none; 
+					  scrollbar-width: none; 
+				 }
+		 
+			  
+			  
+			   #main-wrapper--exp237 {
+				   box-sizing: border-box;
+				   background-color: transparent;
+				   width: 100%;
+				   max-width: 1280px;
+				   height: 100%;
+				   margin: 0 auto;
+				   flex-direction: column;
+				   display: flex;
+				   justify-content: space-around;
+			  }
+			   #main-wrapper--exp237 #carousel--container::-webkit-scrollbar {
+				   display: none;
+				   height: 0;
+			  }
+			   #carousel--container {
+				   margin: 0;
+				   display: flex;
+				   flex-direction: column;
+				   width: 100%;
+				   overflow-y: scroll;
+				   margin-bottom: 33px;
+				   scroll-behavior: smooth;
+				   -ms-overflow-style: none;
+				   scrollbar-width: none;
+			  }
+			  
+			   #carousel--container::-webkit-scrollbar {
+					  display: none;
+					  -ms-overflow-style: none; 
+					  scrollbar-width: none; 
+				 }
+		 
+			  
+			  
+			   #carousel--container.noflow {
+				   overflow: hidden;
+			  }
+			   #main-wrapper--exp237 #carousel--wrapper {
+				   width: 100%;
+				   margin: 0;
+				   padding: 0 1rem;
+				   display: flex;
+				   flex-wrap: wrap;
+			  }
+			   #main-wrapper--exp237 #content {
+				   display: grid;
+				   grid-gap: 16px;
+				   grid-auto-flow: column;
+				   margin: inherit;
+				   box-sizing: border-box;
+				   position: relative;
+				   overflow-y: hidden;
+			  }
+			 
+				.item span.close-card {
+					  transition: all 0.75s linear 250ms;
+					  height: auto;
+					  font-weight: 300;
+					  color: #333;
+					  opacity: 1;
+					  cursor: pointer;
+					  transform: scale(1.15,0.9) translate(-9px, -22px);
+					  position: absolute;
+					  top: 23px;
+					  right: -8px;
+					  width: 25px;
+					  text-align: center;
+				  }
+			  
+			   #main-wrapper--exp237.item.removed {
+				   display: none;
+			  }
+			   .account--holder__greet {
+				   height: 40px;
+				   display: flex;
+				   flex-direction: column;
+				   justify-content: flex-start;
+				   width: 100%;
+				   margin-bottom: 4px;
+				   margin-top: 15px;
+			  }
+			   .account--holder__greet p {
+				   margin: 0;
+				   font-weight: 700;
+				   font-size: 18px;
+				   line-height: 40px;
+			  }
+			   #main-wrapper--exp237 .item{
+				   border-radius: 8px;
+				   cross-fade: 0%;
+				   --webkit-cross-fade: 0%;
+				   cursor: move;
+				   cursor: grab;
+				   cursor: -moz-grab;
+				   cursor: -webkit-grab;
+				   height: 78px;
+				   width: 300px;
+				   background-color: #fff;
+				   border: 1px solid #d9d9d9;
+				   flex-direction: row;
+				   justify-content: space-between;
+				   align-items: center;
+				   flex-wrap: nowrap;
+				   min-width: 300px;
+				   transition: all 2.5s 750ms;
+				   z-index: -1;
+				   position: relative;
+			  }
+			   #main-wrapper--exp237 .item.hidden {
+				   display: none;
+			  }
+			   #main-wrapper--exp237 img.card-logo {
+				   transition: display 0.45s linear 25ms;
+				   width: 100%;
+				   padding: 0;
+				   height: 76px;
+				   position: relative;
+				   max-width: 123px;
+				   transform: rotate(360deg);
+			  }
+			   #main-wrapper--exp237 .item .heading {
+				   letter-spacing: 0;
+				   color: #000000;
+				   font-family: "MS London eText Semibold";
+				   text-align: left;
+				   display: flex;
+				   line-height: 20px;
+				   margin: 0;
+				   width: 160px;
+				   font-size: 14px;
+				   margin-left: -40px;
+			  }
+			   #main-wrapper--exp237 img.card-confetti {
+				   width: 22px;
+				   height: 22px;
+				   transform: translate(-43px, 2px);
+				   align-self: flex-end;
+				   object-fit: contain;
+				   display: flex;
+			  }
+			   .item img.card-confetti::before {
+				   width: 20px;
+				   height: 20px;
+				   display: inline-block;
+				   object-fit: contain;
+				   align-self: flex-end;
+			  }
+			   #main-wrapper--exp237 .carousel--dot span {
+				   display: none;
+			  }
+			   #prev, #next {
+				   display: none;
+			  }
+			   #prev.hidden, #next.hidden {
+				   display: none;
+			  }
+		  }
+		   
+  
+		`;
 
   return {
     regClk: 0,
@@ -875,6 +909,7 @@ var closCarousel237 = (function () {
     }, // handleAllClickEvts fn
 
     doCarouselSecondAct: function () {
+      //debugger;
       if (!this.cookieDo("MS_USER_COOKIE_10151", "cookieValue")) return;
       const gap = 16;
       const carousel = document.getElementById("carousel--container");
@@ -1104,32 +1139,33 @@ var closCarousel237 = (function () {
 
       carsl.className = "main-wrapper--exp237";
       carsl.innerHTML = `
-				<div id="main-wrapper--exp237">
-				   <div id="carousel--wrapper">
-					  <div class="account--holder__greet">
-					  
-					   <p hidden></p>
-					  
-					  </div>
-					  <div id="carousel--container">
-						 <div id="content">
-						 </div>
-						 
-					  </div>
-					  <button hidden id="prev">
-						 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-							<path fill="none" border="none" stroke="#333" d="M16 11l9 9-9 9"/>
-						 </svg>
-					  </button>
-					  <button hidden id="next">
-						 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-							<path fill="none" stroke="#333" d="M16 11l9 9-9 9"/>
-						 </svg>
-					  </button>
-				   </div>
-				</div>
-	`;
+				  <div id="main-wrapper--exp237">
+					 <div id="carousel--wrapper">
+						<div class="account--holder__greet">
+						
+						 <p hidden></p>
+						
+						</div>
+						<div id="carousel--container">
+						   <div id="content">
+						   </div>
+						   
+						</div>
+						<button hidden id="prev">
+						   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							  <path fill="none" border="none" stroke="#333" d="M16 11l9 9-9 9"/>
+						   </svg>
+						</button>
+						<button hidden id="next">
+						   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+							  <path fill="none" stroke="#333" d="M16 11l9 9-9 9"/>
+						   </svg>
+						</button>
+					 </div>
+				  </div>
+	  `;
 
+      // makes sure not there already
       this.removeXhandle(".main-wrapper-exp237");
       this.removeSiteStripe();
       // already exist
@@ -1175,6 +1211,7 @@ window.addEventListener("resize", () => {
     let container = document.querySelector(".main-wrapper--exp237");
     let carcontainer = document.getElementById("carousel--container");
 
+    let cardsNum = Math.round(cardsWidth / 300);
     let totalCards = content.children.length;
 
     if (window.screen.width > 1024 && totalCards > 0) {
@@ -1193,12 +1230,12 @@ window.addEventListener("resize", () => {
     }
 
     console.log(`
-    	${console.clear()}
-    	ResizeObserver:
-    	---------------
-    	Total num of cards => ${totalCards}
-        Container width => => ${cardsWidth}
-    `);
+		  ${console.clear()}
+		  ResizeObserver:
+		  ---------------
+		  Total num of cards => ${totalCards}
+		  Container width => => ${cardsWidth}
+	  `);
 
     return true;
   } //fn cardsBeenAdded
@@ -1215,7 +1252,7 @@ window.addEventListener("resize", () => {
   new ResizeObserver(doCardUpdates.init).observe(xcards);
 }); // resize event
 
-
+//debugger;
 window.addEventListener("load", function () {
   // init activity
   closCarousel237.init();
@@ -1291,8 +1328,8 @@ var carouselData = function () {
         image: "https://donpio.tech/repositories/mtest/images/Card_NEW.png",
         image_mob:
           "https://donpio.tech/repositories/mtest/images/Card_NEW01.png",
-        width: 144,
-        height: 90,
+        width: 246,
+        height: 150,
         showNotification: true,
         tcards: 0,
         emjIcon: true,
@@ -1318,6 +1355,7 @@ var carouselData = function () {
 
     // returns 4 digit int
     addIds: (cards) => {
+      let cids;
       if (cards) {
         return cards.map(
           (li) => (li.id = Math.floor(1000 + Math.random() * 9000))
